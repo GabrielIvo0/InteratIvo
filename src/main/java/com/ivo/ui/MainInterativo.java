@@ -873,18 +873,19 @@ public class MainInterativo extends javax.swing.JFrame {
             add(blocoP15);
         }
     };
-
     
     public void encaixaBloco(Bloco blAlvo, Bloco bl, boolean lateral){
+        //Encaixa tudo
         Point loc;
         if(lateral){
             loc = blAlvo.ret.getLocation();
             loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
+            blAlvo.encaixadoLateral = bl.id;
         }else{
             loc = blAlvo.ret.getLocation();
             loc.y = (blAlvo.ret.getBounds().y) + (blAlvo.ret.getBounds().height);
+            blAlvo.encaixado = bl.id;
         }
-        
         int idD = bl.id;
         switch (idD) {
             case 1 -> {
@@ -983,13 +984,11 @@ public class MainInterativo extends javax.swing.JFrame {
         bl.retEncaixeLateral.x = bl.retEncaixeLateral.x + 25;
 
         blocos.set(bl.id, bl);
-
-        blAlvo.encaixado = bl.id;
         blocos.set(blAlvo.id, blAlvo);
     }
     public boolean estaEncaixado(Bloco blAlvo){
     //Se o bloco que estou tentando encaixar estiver grudadoa outro, não pode encaixar                
-                        if (blAlvo.encaixado != 0) {
+                        if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
                             return true;
                         }
                         for (Bloco b : blocos) {
@@ -1066,7 +1065,7 @@ public class MainInterativo extends javax.swing.JFrame {
                         System.out.println("Var2 ENCAIXOU com " + blAlvo.id);
                     }
                     case 6 -> {
-                         if (estaEncaixado(blAlvo)) {
+                        if (estaEncaixado(blAlvo)) {
                             break;
                         }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
@@ -1085,269 +1084,131 @@ public class MainInterativo extends javax.swing.JFrame {
                     
                     case 7 -> {
                         //ENCAIXA DE USO DE VARIAVEIS menos dos blocos 2 4 5
-                        if (blAlvo.id != 2 && blAlvo.id != 4 && blAlvo.id != 5) {
-                            
-                            if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
-                                break;
-                            }
-                            achou = true;
-                            
-                            
-                            loc = blAlvo.ret.getLocation();
-                            loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
-
-                            Bloco07VarU.setLocation(loc);
-                            bl.ret = Bloco07VarU.getBounds();
-                            bl.retEncaixe = Bloco07VarU.getBounds();
-                            
-                            bl.retEncaixe.x = bl.retEncaixe.x + 25;
-                            bl.retEncaixe.y = bl.retEncaixe.y + 25;
-                            
-                            blocos.set(7, bl);
-                            blAlvo.encaixadoLateral = bl.id;
-                            blocos.set(blAlvo.id, blAlvo);
-
-                            System.out.println("VarU7 ENCAIXOU com " + blAlvo.id);
-                        } else {
-                            System.out.println("Não pode encaixar com esse " + blAlvo.id);
+                        if (estaEncaixado(blAlvo)) {
+                            break;
                         }
+                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                            encaixaBloco(blAlvo,bl,true);
+                        }else{encaixaBloco(blAlvo,bl,false);}
+                        achou = true;
+
+                        System.out.println("VarU7 ENCAIXOU com " + blAlvo.id);
+                       
                     }
                     case 8 -> {
 
                         //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA DE USO DE VARIAVEIS
-                        if (blAlvo.id != 2 && blAlvo.id != 4 && blAlvo.id != 5) {
-                            if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
-                                break;
-                            }
-                            achou = true;
-                            loc = blAlvo.ret.getLocation();
-                            loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
-
-                            Bloco08VarU.setLocation(loc);
-                            //bl.pos.setLocation(Bloco08VarU.getLocation());
-                            bl.ret = Bloco08VarU.getBounds();
-                            bl.retEncaixe = Bloco08VarU.getBounds();
-                            bl.retEncaixe.x = bl.retEncaixe.x + 25;
-                            bl.retEncaixe.y = bl.retEncaixe.y + 25;
-                            blocos.set(8, bl);
-                            blAlvo.encaixadoLateral = bl.id;
-                            blocos.set(blAlvo.id, blAlvo);
-
-                            System.out.println("VarU8 ENCAIXOU com " + blAlvo.id);
-                        } else {
-                            System.out.println("Não pode encaixar com esse " + blAlvo.id);
+                        if (estaEncaixado(blAlvo)) {
+                            break;
                         }
+                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                            encaixaBloco(blAlvo,bl,true);
+                        }else{encaixaBloco(blAlvo,bl,false);}
+                        achou = true;
+
+                        System.out.println("VarU8 ENCAIXOU com " + blAlvo.id);
+                        
                     }
                     case 9 -> {
 
                         //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA DE USO DE VARIAVEIS
-                        if (blAlvo.id == 1 || blAlvo.id == 3 || blAlvo.id == 6 || blAlvo.id == 7
-                                || blAlvo.id == 8 || blAlvo.id == 9 || blAlvo.id == 10
-                                || blAlvo.id == 11 || blAlvo.id == 12 || blAlvo.id == 13 
-                                || blAlvo.id == 14 || blAlvo.id == 15) {
-                            if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
-                                break;
-                            }
-                            achou = true;
-                            loc = blAlvo.ret.getLocation();
-                            loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
-
-                            Bloco09VarU.setLocation(loc);
-                            //bl.pos.setLocation(Bloco09VarU.getLocation());
-                            bl.ret = Bloco09VarU.getBounds();
-                            bl.retEncaixe = Bloco09VarU.getBounds();
-                            bl.retEncaixe.x = bl.retEncaixe.x + 25;
-                            bl.retEncaixe.y = bl.retEncaixe.y + 25;
-                            blocos.set(9, bl);
-                            blAlvo.encaixadoLateral = bl.id;
-                            blocos.set(blAlvo.id, blAlvo);
-
-                            System.out.println("VarU9 ENCAIXOU com " + blAlvo.id);
-                        } else {
-                            System.out.println("Não pode encaixar com esse " + blAlvo.id);
+                        if (estaEncaixado(blAlvo)) {
+                            break;
                         }
+                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                            encaixaBloco(blAlvo,bl,true);
+                        }else{encaixaBloco(blAlvo,bl,false);}
+                        achou = true;
+                            System.out.println("VarU9 ENCAIXOU com " + blAlvo.id);
+                        
+                        
                     }
                     case 10 -> {
 
                         //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA DE USO DE VARIAVEIS
-                        if (blAlvo.id == 1 || blAlvo.id == 3 || blAlvo.id == 6 || blAlvo.id == 7
-                                || blAlvo.id == 8 || blAlvo.id == 9 || blAlvo.id == 10
-                                || blAlvo.id == 11 || blAlvo.id == 12 || blAlvo.id == 13 
-                                || blAlvo.id == 14 || blAlvo.id == 15) {
-                            if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
-                                break;
-                            }
-                            achou = true;
-                            loc = blAlvo.ret.getLocation();
-                            loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
-
-                            Bloco10VarU.setLocation(loc);
-                            //bl.pos.setLocation(Bloco10VarU.getLocation());
-                            bl.ret = Bloco10VarU.getBounds();
-                            bl.retEncaixe = Bloco10VarU.getBounds();
-                            bl.retEncaixe.x = bl.retEncaixe.x + 25;
-                            bl.retEncaixe.y = bl.retEncaixe.y + 25;
-                            blocos.set(10, bl);
-                            blAlvo.encaixadoLateral = bl.id;
-                            blocos.set(blAlvo.id, blAlvo);
-
-                            System.out.println("VarU10 ENCAIXOU com " + blAlvo.id);
-                        } else {
-                            System.out.println("Não pode encaixar com esse " + blAlvo.id);
+                        if (estaEncaixado(blAlvo)) {
+                            break;
                         }
+                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                            encaixaBloco(blAlvo,bl,true);
+                        }else{encaixaBloco(blAlvo,bl,false);}
+                        achou = true;
+
+                        System.out.println("VarU10 ENCAIXOU com " + blAlvo.id);
+                        
                     }
                     case 11 -> {
 
                         //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (blAlvo.id == 1 || blAlvo.id == 3 || blAlvo.id == 6 || blAlvo.id == 7
-                                || blAlvo.id == 8 || blAlvo.id == 9 || blAlvo.id == 10
-                                || blAlvo.id == 11 || blAlvo.id == 12 || blAlvo.id == 13 
-                                || blAlvo.id == 14 || blAlvo.id == 15) {
-                            if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
-                                break;
-                            }
-                            achou = true;
-                            loc = blAlvo.ret.getLocation();
-                            loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
-
-                            Bloco11Oper.setLocation(loc);
-                            //bl.pos.setLocation(Bloco11Oper.getLocation());
-                            bl.ret = Bloco11Oper.getBounds();
-                            bl.retEncaixe = Bloco11Oper.getBounds();
-                            bl.retEncaixe.x = bl.retEncaixe.x + 25;
-                            bl.retEncaixe.y = bl.retEncaixe.y + 25;
-                            blocos.set(11, bl);
-                            blAlvo.encaixadoLateral = bl.id;
-                            blocos.set(blAlvo.id, blAlvo);
-
-                            System.out.println("Oper11 ENCAIXOU com " + blAlvo.id);
-                        } else {
-                            System.out.println("Não pode encaixar com esse " + blAlvo.id);
+                        if (estaEncaixado(blAlvo)) {
+                            break;
                         }
+                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                            encaixaBloco(blAlvo,bl,true);
+                        }else{encaixaBloco(blAlvo,bl,false);}
+                        achou = true;
+                            System.out.println("Oper11 ENCAIXOU com " + blAlvo.id);
+                        
                     }
                     case 12 -> {
 
                         //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (blAlvo.id == 1 || blAlvo.id == 3 || blAlvo.id == 6 || blAlvo.id == 7
-                                || blAlvo.id == 8 || blAlvo.id == 9 || blAlvo.id == 10
-                                || blAlvo.id == 11 || blAlvo.id == 12 || blAlvo.id == 13 
-                                || blAlvo.id == 14 || blAlvo.id == 15) {
-                            if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
-                                break;
-                            }
-                            achou = true;
-                            loc = blAlvo.ret.getLocation();
-                            loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
-
-                            Bloco12Oper.setLocation(loc);
-                            //bl.pos.setLocation(Bloco12Oper.getLocation());
-                            bl.ret = Bloco12Oper.getBounds();
-                            bl.retEncaixe = Bloco12Oper.getBounds();
-                            bl.retEncaixe.x = bl.retEncaixe.x + 25;
-                            bl.retEncaixe.y = bl.retEncaixe.y + 25;
-                            blocos.set(12, bl);
-                            blAlvo.encaixadoLateral = bl.id;
-                            blocos.set(blAlvo.id, blAlvo);
-
-                            System.out.println("Oper12 ENCAIXOU com " + blAlvo.id);
-                        } else {
-                            System.out.println("Não pode encaixar com esse " + blAlvo.id);
+                        if (estaEncaixado(blAlvo)) {
+                            break;
                         }
+                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                            encaixaBloco(blAlvo,bl,true);
+                        }else{encaixaBloco(blAlvo,bl,false);}
+                        achou = true;
+                            System.out.println("Oper12 ENCAIXOU com " + blAlvo.id);
+                        
                     }
                     case 13 -> {
 
                         //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (blAlvo.id == 1 || blAlvo.id == 3 || blAlvo.id == 6 || blAlvo.id == 7
-                                || blAlvo.id == 8 || blAlvo.id == 9 || blAlvo.id == 10
-                                || blAlvo.id == 11 || blAlvo.id == 12 || blAlvo.id == 13 
-                                || blAlvo.id == 14 || blAlvo.id == 15) {
-                            if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
-                                break;
-                            }
-                            achou = true;
-                            loc = blAlvo.ret.getLocation();
-                            loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
-
-                            Bloco13Oper.setLocation(loc);
-                            //bl.pos.setLocation(Bloco12Oper.getLocation());
-                            bl.ret = Bloco13Oper.getBounds();
-                            bl.retEncaixe = Bloco13Oper.getBounds();
-                            bl.retEncaixe.x = bl.retEncaixe.x + 25;
-                            bl.retEncaixe.y = bl.retEncaixe.y + 25;
-                            blocos.set(13, bl);
-                            blAlvo.encaixadoLateral = bl.id;
-                            blocos.set(blAlvo.id, blAlvo);
-
-                            System.out.println("Oper13 ENCAIXOU com " + blAlvo.id);
-                        } else {
-                            System.out.println("Não pode encaixar com esse " + blAlvo.id);
+                        if (estaEncaixado(blAlvo)) {
+                            break;
                         }
+                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                            encaixaBloco(blAlvo,bl,true);
+                        }else{encaixaBloco(blAlvo,bl,false);}
+                        achou = true;
+                        System.out.println("Oper13 ENCAIXOU com " + blAlvo.id);
+                        
                     }
                     case 14 -> {
 
                         //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (blAlvo.id == 1 || blAlvo.id == 3 || blAlvo.id == 6 || blAlvo.id == 7
-                                || blAlvo.id == 8 || blAlvo.id == 9 || blAlvo.id == 10
-                                || blAlvo.id == 11 || blAlvo.id == 12 || blAlvo.id == 13 
-                                || blAlvo.id == 14 || blAlvo.id == 15) {
-                            if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
-                                break;
-                            }
-                            achou = true;
-                            loc = blAlvo.ret.getLocation();
-                            loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
-
-                            Bloco14Oper.setLocation(loc);
-                            //bl.pos.setLocation(Bloco12Oper.getLocation());
-                            bl.ret = Bloco14Oper.getBounds();
-                            bl.retEncaixe = Bloco14Oper.getBounds();
-                            bl.retEncaixe.x = bl.retEncaixe.x + 25;
-                            bl.retEncaixe.y = bl.retEncaixe.y + 25;
-                            blocos.set(14, bl);
-                            blAlvo.encaixadoLateral = bl.id;
-                            blocos.set(blAlvo.id, blAlvo);
-
-                            System.out.println("Oper14 ENCAIXOU com " + blAlvo.id);
-                        } else {
-                            System.out.println("Não pode encaixar com esse " + blAlvo.id);
+                        if (estaEncaixado(blAlvo)) {
+                            break;
                         }
+                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                            encaixaBloco(blAlvo,bl,true);
+                        }else{encaixaBloco(blAlvo,bl,false);}
+                        achou = true;
+                        System.out.println("Oper14 ENCAIXOU com " + blAlvo.id);
+                        
                     }
                     case 15 -> {
 
                         //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (blAlvo.id == 1 || blAlvo.id == 3 || blAlvo.id == 6 || blAlvo.id == 7
-                                || blAlvo.id == 8 || blAlvo.id == 9 || blAlvo.id == 10
-                                || blAlvo.id == 11 || blAlvo.id == 12 || blAlvo.id == 13 
-                                || blAlvo.id == 14 || blAlvo.id == 15 ) {
-                            if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
-                                break;
-                            }
-                            achou = true;
-                            loc = blAlvo.ret.getLocation();
-                            loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
-
-                            Bloco15Oper.setLocation(loc);
-                            //bl.pos.setLocation(Bloco12Oper.getLocation());
-                            bl.ret = Bloco15Oper.getBounds();
-                            bl.retEncaixe = Bloco15Oper.getBounds();
-                            bl.retEncaixe.x = bl.retEncaixe.x + 25;
-                            bl.retEncaixe.y = bl.retEncaixe.y + 25;
-                            blocos.set(15, bl);
-                            blAlvo.encaixadoLateral = bl.id;
-                            blocos.set(blAlvo.id, blAlvo);
-
-                            System.out.println("Oper15 ENCAIXOU com " + blAlvo.id);
-                        } else {
-                            System.out.println("Não pode encaixar com esse " + blAlvo.id);
+                        if (estaEncaixado(blAlvo)) {
+                            break;
                         }
+                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                            encaixaBloco(blAlvo,bl,true);
+                        }else{encaixaBloco(blAlvo,bl,false);}
+                        achou = true;
+                        System.out.println("Oper15 ENCAIXOU com " + blAlvo.id);
+                        
                     }
                     default -> {
                         System.out.println("Erro Encaixe");
@@ -1371,6 +1232,10 @@ public class MainInterativo extends javax.swing.JFrame {
         for (Bloco blAlvo : blocos) {
             if (blAlvo.encaixado == 1) {
                 blAlvo.encaixado = 0;
+                blocos.set(blAlvo.id, blAlvo);
+            }
+            if (blAlvo.encaixadoLateral == 1) {
+                blAlvo.encaixadoLateral = 0;
                 blocos.set(blAlvo.id, blAlvo);
             }
         }
@@ -1412,6 +1277,10 @@ public class MainInterativo extends javax.swing.JFrame {
                 blAlvo.encaixado = 0;
                 blocos.set(blAlvo.id, blAlvo);
             }
+            if (blAlvo.encaixadoLateral == 2) {
+                blAlvo.encaixadoLateral = 0;
+                blocos.set(blAlvo.id, blAlvo);
+            }
         }
 
         int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
@@ -1433,6 +1302,10 @@ public class MainInterativo extends javax.swing.JFrame {
         for (Bloco blAlvo : blocos) {
             if (blAlvo.encaixado == 3) {
                 blAlvo.encaixado = 0;
+                blocos.set(blAlvo.id, blAlvo);
+            }
+            if (blAlvo.encaixadoLateral == 3) {
+                blAlvo.encaixadoLateral = 0;
                 blocos.set(blAlvo.id, blAlvo);
             }
         }
@@ -1476,6 +1349,10 @@ public class MainInterativo extends javax.swing.JFrame {
         for (Bloco blAlvo : blocos) {
             if (blAlvo.encaixado == 4) {
                 blAlvo.encaixado = 0;
+                blocos.set(blAlvo.id, blAlvo);
+            }
+            if (blAlvo.encaixadoLateral == 4) {
+                blAlvo.encaixadoLateral = 0;
                 blocos.set(blAlvo.id, blAlvo);
             }
         }
@@ -1528,6 +1405,10 @@ public class MainInterativo extends javax.swing.JFrame {
         for (Bloco blAlvo : blocos) {
             if (blAlvo.encaixado == 5) {
                 blAlvo.encaixado = 0;
+                blocos.set(blAlvo.id, blAlvo);
+            }
+            if (blAlvo.encaixadoLateral == 5) {
+                blAlvo.encaixadoLateral = 0;
                 blocos.set(blAlvo.id, blAlvo);
             }
         }
@@ -1601,6 +1482,10 @@ public class MainInterativo extends javax.swing.JFrame {
         for (Bloco blAlvo : blocos) {
             if (blAlvo.encaixado == 6) {
                 blAlvo.encaixado = 0;
+                blocos.set(blAlvo.id, blAlvo);
+            }
+            if (blAlvo.encaixadoLateral == 6) {
+                blAlvo.encaixadoLateral = 0;
                 blocos.set(blAlvo.id, blAlvo);
             }
         }

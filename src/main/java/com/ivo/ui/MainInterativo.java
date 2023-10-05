@@ -45,7 +45,7 @@ public class MainInterativo extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         Bloco01 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        Variaveis = new javax.swing.JComboBox<>();
         Bloco02 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         print = new javax.swing.JTextField();
@@ -125,25 +125,56 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Operação");
+        Variaveis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ""}));
+        Variaveis.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                VariaveisMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                VariaveisMouseMoved(evt);
+            }
+        });
+        Variaveis.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+                VariaveisPopupMenuCanceled(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                VariaveisPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                VariaveisPopupMenuWillBecomeVisible(evt);
+            }
+        });
+        Variaveis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VariaveisMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                VariaveisMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Bloco01Layout = new javax.swing.GroupLayout(Bloco01);
         Bloco01.setLayout(Bloco01Layout);
         Bloco01Layout.setHorizontalGroup(
             Bloco01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Bloco01Layout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addComponent(Variaveis, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1))
         );
         Bloco01Layout.setVerticalGroup(
             Bloco01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Bloco01Layout.createSequentialGroup()
+            .addGroup(Bloco01Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Bloco01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Bloco01Layout.createSequentialGroup()
+                        .addComponent(Variaveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(Bloco01Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(5, 5, 5))))
         );
 
         Bloco02.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -735,7 +766,7 @@ public class MainInterativo extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(Bloco03, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Bloco02, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Bloco01, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Bloco01, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Bloco11Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -756,7 +787,7 @@ public class MainInterativo extends javax.swing.JFrame {
                         .addComponent(Bloco08VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Bloco10VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Bloco09VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -794,7 +825,7 @@ public class MainInterativo extends javax.swing.JFrame {
                     .addComponent(Bloco09VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Bloco10VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
             .addComponent(jLayeredPane1)
         );
 
@@ -987,15 +1018,32 @@ public class MainInterativo extends javax.swing.JFrame {
         blocos.set(blAlvo.id, blAlvo);
     }
     public boolean estaEncaixado(Bloco blAlvo){
-    //Se o bloco que estou tentando encaixar estiver grudadoa outro, não pode encaixar                
-                        if (blAlvo.encaixado != 0 || blAlvo.encaixadoLateral != 0) {
+    //Se o bloco que estou tentando encaixar estiver grudadoa outro, não pode encaixar 
+                        if (blAlvo.encaixado != 0 ) {
+                            System.out.println("if 1 block");
                             return true;
                         }
-                        for (Bloco b : blocos) {
-                            if (b.encaixadoLateral == blAlvo.id && blAlvo.id != 0) {
+                        /*for (Bloco b : blocos) {
+                            if (b.encaixado == blAlvo.id && blAlvo.id != 0) {
+                                
+                            System.out.println("for if 2");
                                 return true;
                             }
+                        }*/
+                   return false;     
+    }public boolean estaEncaixadoLateral(Bloco blAlvo){
+    //Se o bloco que estou tentando encaixar estiver grudadoa outro, não pode encaixar 
+                        if (blAlvo.encaixadoLateral != 0 ) {
+                            System.out.println("if Lateral block");
+                            return true;
                         }
+                        /*for (Bloco b : blocos) {
+                            if (b.encaixado == blAlvo.id && blAlvo.id != 0) {
+                                
+                            System.out.println("for if 2");
+                                return true;
+                            }
+                        }*/
                    return false;     
     }
     
@@ -1003,209 +1051,230 @@ public class MainInterativo extends javax.swing.JFrame {
     public void encaixa(Bloco bl) {
         //Verifica qual bloco está encaixando em qual e muda a localização para encaixar
         boolean achou = false;
-        Point loc;
         for (Bloco blAlvo : blocos) {
             if ((bl.ret.intersects(blAlvo.retEncaixe) || bl.ret.intersects(blAlvo.retEncaixeLateral)) &&
                     bl.id != blAlvo.id && achou == false) {
                 switch (bl.id) {
                     case 1 -> { //Operacao
-                    
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
+                        
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         
                         achou = true;
                         System.out.println("operacao ENCAIXOU com " + blAlvo.id);
                     }
                     case 2 -> {//Escreva
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
 
                         System.out.println("Escreva ENCAIXOU com " + blAlvo.id);
                     }
                     case 3 -> {//Retorna
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
 
                         System.out.println("Retorna ENCAIXOU com " + blAlvo.id);
                     }
                     case 4 -> {
-                         if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
 
                         System.out.println("Var ENCAIXOU com " + blAlvo.id);
                     }
                     case 5 -> {
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
 
                         System.out.println("Var2 ENCAIXOU com " + blAlvo.id);
                     }
                     case 6 -> {
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
 
                         System.out.println("Var3 ENCAIXOU com " + blAlvo.id);
                     }
-                    
-
-
-                    
-                    
-                    
-                    
                     case 7 -> {
-                        //ENCAIXA DE USO DE VARIAVEIS menos dos blocos 2 4 5
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
+                        //ENCAIXA DE USO DE VARIAVEIS
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
 
                         System.out.println("VarU7 ENCAIXOU com " + blAlvo.id);
                        
                     }
                     case 8 -> {
-
-                        //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA DE USO DE VARIAVEIS
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
 
                         System.out.println("VarU8 ENCAIXOU com " + blAlvo.id);
                         
                     }
                     case 9 -> {
-
-                        //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA DE USO DE VARIAVEIS
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
                             System.out.println("VarU9 ENCAIXOU com " + blAlvo.id);
                         
                         
                     }
                     case 10 -> {
-
-                        //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA DE USO DE VARIAVEIS
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
 
                         System.out.println("VarU10 ENCAIXOU com " + blAlvo.id);
                         
                     }
                     case 11 -> {
-
-                        //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
                             System.out.println("Oper11 ENCAIXOU com " + blAlvo.id);
                         
                     }
                     case 12 -> {
-
-                        //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
                             System.out.println("Oper12 ENCAIXOU com " + blAlvo.id);
                         
                     }
                     case 13 -> {
-
-                        //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
                         System.out.println("Oper13 ENCAIXOU com " + blAlvo.id);
                         
                     }
                     case 14 -> {
-
-                        //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
                         System.out.println("Oper14 ENCAIXOU com " + blAlvo.id);
                         
                     }
                     case 15 -> {
-
-                        //FAZER UM NEGOCIO PARA NAO PODER ENCAIXAr COM O 6 E 7!!!
                         //ENCAIXA LATERAL OU SUP OPERADORES
-                        if (estaEncaixado(blAlvo)) {
-                            break;
-                        }
                         if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            encaixaBloco(blAlvo,bl,true);
-                        }else{encaixaBloco(blAlvo,bl,false);}
+                            if (!estaEncaixadoLateral(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,true);
+                            }
+                        }else{
+                            if (!estaEncaixado(blAlvo)) {
+                                encaixaBloco(blAlvo,bl,false);
+                            }
+                        }
                         achou = true;
                         System.out.println("Oper15 ENCAIXOU com " + blAlvo.id);
                         
@@ -1736,6 +1805,34 @@ public class MainInterativo extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         repositionPanels(jPanel1);
     }//GEN-LAST:event_formWindowActivated
+
+    private void VariaveisMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VariaveisMouseMoved
+       repositionPanels(jPanel1);
+    }//GEN-LAST:event_VariaveisMouseMoved
+
+    private void VariaveisPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_VariaveisPopupMenuWillBecomeVisible
+       repositionPanels(jPanel1);
+    }//GEN-LAST:event_VariaveisPopupMenuWillBecomeVisible
+
+    private void VariaveisPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_VariaveisPopupMenuWillBecomeInvisible
+       repositionPanels(jPanel1);
+    }//GEN-LAST:event_VariaveisPopupMenuWillBecomeInvisible
+
+    private void VariaveisPopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_VariaveisPopupMenuCanceled
+       repositionPanels(jPanel1);
+    }//GEN-LAST:event_VariaveisPopupMenuCanceled
+
+    private void VariaveisMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VariaveisMouseDragged
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_VariaveisMouseDragged
+
+    private void VariaveisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VariaveisMouseClicked
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_VariaveisMouseClicked
+
+    private void VariaveisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VariaveisMousePressed
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_VariaveisMousePressed
     private Código jCodigo = new Código();
 
     /**
@@ -1825,6 +1922,7 @@ public class MainInterativo extends javax.swing.JFrame {
     javax.swing.JTextField VarUSE03;
     javax.swing.JTextField VarUSE1;
     javax.swing.JTextField VarUSE2;
+    javax.swing.JComboBox<String> Variaveis;
     javax.swing.JMenu VisuCódigo;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
@@ -1834,7 +1932,6 @@ public class MainInterativo extends javax.swing.JFrame {
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
-    javax.swing.JLabel jLabel5;
     javax.swing.JLabel jLabel6;
     javax.swing.JLabel jLabel7;
     javax.swing.JLabel jLabel8;

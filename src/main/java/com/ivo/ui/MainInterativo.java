@@ -125,7 +125,7 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        Variaveis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ""}));
+        Variaveis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
         Variaveis.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 VariaveisMouseDragged(evt);

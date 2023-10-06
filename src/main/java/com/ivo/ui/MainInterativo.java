@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 /**
  *
  * @author Gabriel Ivo
@@ -1028,14 +1029,12 @@ public class MainInterativo extends javax.swing.JFrame {
                             encaixaBloco(blAlvo,bl,false);
                         }
                     }
-
                     achou = true;
                     System.out.println("operacao ENCAIXOU com " + blAlvo.id);
             }
         }
     }
     private void moveBloco(java.awt.event.MouseEvent evt,Bloco bl){
-        //atualizaABlocos();
         javax.swing.JPanel blocoO = blocosS.get(bl.id);
         bl.ret = blocoO.getBounds();
         bl.retEncaixe = blocoO.getBounds();
@@ -1054,8 +1053,6 @@ public class MainInterativo extends javax.swing.JFrame {
                 blocos.set(blAlvo.id, blAlvo);
             }
         }
-        
-        
         int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
         int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
 
@@ -1337,7 +1334,13 @@ public class MainInterativo extends javax.swing.JFrame {
             // Relocaliza os componentes quando minimizado
             Point pt = getLocation();
             pt.x = 0;
-            pt.y = 0;
+            pt.y = 0; 
+            /*atualizaABlocos();
+            for (Bloco bl : blocos) {
+                javax.swing.JPanel blocoO = blocosS.get(bl.id);
+                if(blocoO == null){break;}
+                if(!bl.getRet().getLocation().equals(pt))blocoO.setLocation(blocoP1.getRet().getLocation());
+            }*/
             if(!blocoP1.getRet().getLocation().equals(pt))Bloco01.setLocation(blocoP1.getRet().getLocation());
             if(!blocoP2.getRet().getLocation().equals(pt))Bloco02.setLocation(blocoP2.getRet().getLocation());
             if(!blocoP3.getRet().getLocation().equals(pt))Bloco03.setLocation(blocoP3.getRet().getLocation());

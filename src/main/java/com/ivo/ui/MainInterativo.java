@@ -1060,7 +1060,7 @@ public class MainInterativo extends javax.swing.JFrame {
         int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
 
         blocoO.setLocation(x, y);
-        blocos.set(1, bl);
+        blocos.set(bl.id, bl);
     }
     private void Bloco01MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco01MouseDragged
         //Label IF

@@ -3,6 +3,10 @@ package com.ivo.ui;
 import com.ivo.tools.Bloco;
 
 import java.awt.Point;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 /**
@@ -873,7 +877,7 @@ public class MainInterativo extends javax.swing.JFrame {
     Bloco blocoP14 = new Bloco();
     Bloco blocoP15 = new Bloco();
 
-    public ArrayList<javax.swing.JPanel> blocosS = new ArrayList<javax.swing.JPanel>() {
+    public ArrayList<javax.swing.JPanel> blocosS = new ArrayList<javax.swing.JPanel>() {//TESTEEE
         {
             add(Bloco00);
             add(Bloco01);
@@ -882,8 +886,35 @@ public class MainInterativo extends javax.swing.JFrame {
             add(Bloco04Var);
             add(Bloco05Var);
             add(Bloco06Var);
+            add(Bloco07VarU);
+            add(Bloco08VarU);
+            add(Bloco09VarU);
+            add(Bloco10VarU);
+            add(Bloco11Oper);
+            add(Bloco12Oper);
+            add(Bloco13Oper);
+            add(Bloco14Oper);
+            add(Bloco15Oper);
         }
     };
+    public void atualizaABlocos (){
+            
+            blocosS.set(1, Bloco01);
+            blocosS.set(2, Bloco02);
+            blocosS.set(3, Bloco03);
+            blocosS.set(4, Bloco04Var);
+            blocosS.set(5, Bloco05Var);
+            blocosS.set(6, Bloco06Var);
+            blocosS.set(7, Bloco07VarU);
+            blocosS.set(8, Bloco08VarU);
+            blocosS.set(9, Bloco09VarU);
+            blocosS.set(10, Bloco10VarU);
+            blocosS.set(11, Bloco11Oper);
+            blocosS.set(12, Bloco12Oper);
+            blocosS.set(13, Bloco13Oper);
+            blocosS.set(14, Bloco14Oper);
+            blocosS.set(15, Bloco15Oper);
+    }
     public ArrayList<Bloco> blocos = new ArrayList<Bloco>() {
         {
             add(blocoP0);
@@ -908,6 +939,8 @@ public class MainInterativo extends javax.swing.JFrame {
     public void encaixaBloco(Bloco blAlvo, Bloco bl, boolean lateral){
         //Encaixa tudo
         Point loc;
+        //atualizaABlocos ();
+        javax.swing.JPanel blocoO = blocosS.get(bl.id);
         if(lateral){
             loc = blAlvo.ret.getLocation();
             loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
@@ -917,100 +950,11 @@ public class MainInterativo extends javax.swing.JFrame {
             loc.y = (blAlvo.ret.getBounds().y) + (blAlvo.ret.getBounds().height);
             blAlvo.encaixado = bl.id;
         }
-        int idD = bl.id;
-        switch (idD) {
-            case 1 -> {
-                Bloco01.setLocation(loc);
-                bl.ret = Bloco01.getBounds();
-                bl.retEncaixe = Bloco01.getBounds();
-                bl.retEncaixeLateral = Bloco01.getBounds();
-            }
-            case 2 -> {
-                Bloco02.setLocation(loc);
-                bl.ret = Bloco02.getBounds();
-                bl.retEncaixe = Bloco02.getBounds();
-                bl.retEncaixeLateral = Bloco02.getBounds();
-            }
-            case 3 -> {
-                Bloco03.setLocation(loc);
-                bl.ret = Bloco03.getBounds();
-                bl.retEncaixe = Bloco03.getBounds();
-                bl.retEncaixeLateral = Bloco03.getBounds();
-            }
-            case 4 -> {
-                Bloco04Var.setLocation(loc);
-                bl.ret = Bloco04Var.getBounds();
-                bl.retEncaixe = Bloco04Var.getBounds();
-                bl.retEncaixeLateral = Bloco04Var.getBounds();
-            }
-            case 5 -> {
-                Bloco05Var.setLocation(loc);
-                bl.ret = Bloco05Var.getBounds();
-                bl.retEncaixe = Bloco05Var.getBounds();
-                bl.retEncaixeLateral = Bloco05Var.getBounds();
-            }
-            case 6 -> {
-                Bloco06Var.setLocation(loc);
-                bl.ret = Bloco06Var.getBounds();
-                bl.retEncaixe = Bloco06Var.getBounds();
-                bl.retEncaixeLateral = Bloco06Var.getBounds();
-            }
-            case 7 -> {
-                Bloco07VarU.setLocation(loc);
-                bl.ret = Bloco07VarU.getBounds();
-                bl.retEncaixe = Bloco07VarU.getBounds();
-                bl.retEncaixeLateral = Bloco07VarU.getBounds();
-            }
-            case 8 -> {
-                Bloco08VarU.setLocation(loc);
-                bl.ret = Bloco08VarU.getBounds();
-                bl.retEncaixe = Bloco08VarU.getBounds();
-                bl.retEncaixeLateral = Bloco08VarU.getBounds();
-            }
-            case 9 -> {
-                Bloco09VarU.setLocation(loc);
-                bl.ret = Bloco09VarU.getBounds();
-                bl.retEncaixe = Bloco09VarU.getBounds();
-                bl.retEncaixeLateral = Bloco09VarU.getBounds();
-            }
-            case 10 -> {
-                Bloco10VarU.setLocation(loc);
-                bl.ret = Bloco10VarU.getBounds();
-                bl.retEncaixe = Bloco10VarU.getBounds();
-                bl.retEncaixeLateral = Bloco10VarU.getBounds();
-            }
-            case 11 -> {
-                Bloco11Oper.setLocation(loc);
-                bl.ret = Bloco11Oper.getBounds();
-                bl.retEncaixe = Bloco11Oper.getBounds();
-                bl.retEncaixeLateral = Bloco11Oper.getBounds();
-            }
-            case 12 -> {
-                Bloco12Oper.setLocation(loc);
-                bl.ret = Bloco12Oper.getBounds();
-                bl.retEncaixe = Bloco12Oper.getBounds();
-                bl.retEncaixeLateral = Bloco12Oper.getBounds();
-            }
-            case 13 -> {
-                Bloco13Oper.setLocation(loc);
-                bl.ret = Bloco13Oper.getBounds();
-                bl.retEncaixe = Bloco13Oper.getBounds();
-                bl.retEncaixeLateral = Bloco13Oper.getBounds();
-            }
-            case 14 -> {
-                Bloco14Oper.setLocation(loc);
-                bl.ret = Bloco14Oper.getBounds();
-                bl.retEncaixe = Bloco14Oper.getBounds();
-                bl.retEncaixeLateral = Bloco14Oper.getBounds();
-            }
-            case 15 -> {
-                Bloco15Oper.setLocation(loc);
-                bl.ret = Bloco15Oper.getBounds();
-                bl.retEncaixe = Bloco15Oper.getBounds();
-                bl.retEncaixeLateral = Bloco15Oper.getBounds();
-            }
-            default -> System.out.println("Erro encaixa Bloco");
-        }
+        blocoO.setLocation(loc);
+        bl.ret = blocoO.getBounds();
+        bl.retEncaixe = blocoO.getBounds();
+        bl.retEncaixeLateral = blocoO.getBounds();
+            
         bl.retEncaixe.y = bl.retEncaixe.y + 25;
         bl.retEncaixeLateral.x = bl.retEncaixeLateral.x + 25;
 
@@ -1046,264 +990,66 @@ public class MainInterativo extends javax.swing.JFrame {
                         }*/
                    return false;     
     }
-    
-    //OBS Tentar criar um metodo estilo encaixar para mover varios de uma vez
+    /*public static javax.swing.JPanel clonarPanel(javax.swing.JPanel panelOriginal) {
+        try {
+            // Serializa o JPanel original
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(bos);
+            out.writeObject(panelOriginal);
+            out.flush();
+            out.close();
+
+            // Desserializa a cópia
+            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+            ObjectInputStream in = new ObjectInputStream(bis);
+            javax.swing.JPanel panelCopia = (javax.swing.JPanel) in.readObject();
+            in.close();
+
+            return panelCopia;
+        } catch (Exception e) {
+            System.out.println("ERRO");
+            e.printStackTrace();
+            return null;
+        }
+    }*/
+    //TESTAR E O JPANEL PASSA POR CHAMADA DE METODOS SE DA PRA ALTERAR A LOCATION DELES POR METODO, NA VDD USAR O ARRAY LIST
     public void encaixa(Bloco bl) {
         //Verifica qual bloco está encaixando em qual e muda a localização para encaixar
         boolean achou = false;
         for (Bloco blAlvo : blocos) {
             if ((bl.ret.intersects(blAlvo.retEncaixe) || bl.ret.intersects(blAlvo.retEncaixeLateral)) &&
-                    bl.id != blAlvo.id && achou == false) {
-                switch (bl.id) {
-                    case 1 -> { //Operacao
-                        
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
+                bl.id != blAlvo.id && achou == false) {
+                    if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
+                        if (!estaEncaixadoLateral(blAlvo)) {
+                            encaixaBloco(blAlvo,bl,true);
                         }
-                        
-                        achou = true;
-                        System.out.println("operacao ENCAIXOU com " + blAlvo.id);
+                    }else{
+                        if (!estaEncaixado(blAlvo)) {
+                            encaixaBloco(blAlvo,bl,false);
+                        }
                     }
-                    case 2 -> {//Escreva
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
 
-                        System.out.println("Escreva ENCAIXOU com " + blAlvo.id);
-                    }
-                    case 3 -> {//Retorna
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-
-                        System.out.println("Retorna ENCAIXOU com " + blAlvo.id);
-                    }
-                    case 4 -> {
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-
-                        System.out.println("Var ENCAIXOU com " + blAlvo.id);
-                    }
-                    case 5 -> {
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-
-                        System.out.println("Var2 ENCAIXOU com " + blAlvo.id);
-                    }
-                    case 6 -> {
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-
-                        System.out.println("Var3 ENCAIXOU com " + blAlvo.id);
-                    }
-                    case 7 -> {
-                        //ENCAIXA DE USO DE VARIAVEIS
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-
-                        System.out.println("VarU7 ENCAIXOU com " + blAlvo.id);
-                       
-                    }
-                    case 8 -> {
-                        //ENCAIXA DE USO DE VARIAVEIS
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-
-                        System.out.println("VarU8 ENCAIXOU com " + blAlvo.id);
-                        
-                    }
-                    case 9 -> {
-                        //ENCAIXA DE USO DE VARIAVEIS
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-                            System.out.println("VarU9 ENCAIXOU com " + blAlvo.id);
-                        
-                        
-                    }
-                    case 10 -> {
-                        //ENCAIXA DE USO DE VARIAVEIS
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-
-                        System.out.println("VarU10 ENCAIXOU com " + blAlvo.id);
-                        
-                    }
-                    case 11 -> {
-                        //ENCAIXA LATERAL OU SUP OPERADORES
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-                            System.out.println("Oper11 ENCAIXOU com " + blAlvo.id);
-                        
-                    }
-                    case 12 -> {
-                        //ENCAIXA LATERAL OU SUP OPERADORES
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-                            System.out.println("Oper12 ENCAIXOU com " + blAlvo.id);
-                        
-                    }
-                    case 13 -> {
-                        //ENCAIXA LATERAL OU SUP OPERADORES
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-                        System.out.println("Oper13 ENCAIXOU com " + blAlvo.id);
-                        
-                    }
-                    case 14 -> {
-                        //ENCAIXA LATERAL OU SUP OPERADORES
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-                        System.out.println("Oper14 ENCAIXOU com " + blAlvo.id);
-                        
-                    }
-                    case 15 -> {
-                        //ENCAIXA LATERAL OU SUP OPERADORES
-                        if(bl.ret.intersects(blAlvo.retEncaixeLateral)){
-                            if (!estaEncaixadoLateral(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,true);
-                            }
-                        }else{
-                            if (!estaEncaixado(blAlvo)) {
-                                encaixaBloco(blAlvo,bl,false);
-                            }
-                        }
-                        achou = true;
-                        System.out.println("Oper15 ENCAIXOU com " + blAlvo.id);
-                        
-                    }
-                    default -> {
-                        System.out.println("Erro Encaixe");
-                    }
-                }
-
+                    achou = true;
+                    System.out.println("operacao ENCAIXOU com " + blAlvo.id);
             }
         }
     }
-
-    private void Bloco01MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco01MouseDragged
-        //Label IF
-
-        blocoP1.ret = Bloco01.getBounds();
-        blocoP1.retEncaixe = Bloco01.getBounds();
-        blocoP1.retEncaixeLateral = Bloco01.getBounds();
-        blocoP1.retEncaixe.x = blocoP1.retEncaixe.x + 25;
-        blocoP1.retEncaixe.y = blocoP1.retEncaixe.y + 25;
-        blocoP1.encaixado = 0;
-        blocoP1.encaixadoLateral = 0;
+    private void moveBloco(java.awt.event.MouseEvent evt,Bloco bl){
+        //atualizaABlocos();
+        javax.swing.JPanel blocoO = blocosS.get(bl.id);
+        bl.ret = blocoO.getBounds();
+        bl.retEncaixe = blocoO.getBounds();
+        bl.retEncaixeLateral = blocoO.getBounds();
+        bl.retEncaixe.x = bl.retEncaixe.x + 25;
+        bl.retEncaixe.y = bl.retEncaixe.y + 25;
+        bl.encaixado = 0;
+        bl.encaixadoLateral = 0;
         for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 1) {
+            if (blAlvo.encaixado == bl.id) {
                 blAlvo.encaixado = 0;
                 blocos.set(blAlvo.id, blAlvo);
             }
-            if (blAlvo.encaixadoLateral == 1) {
+            if (blAlvo.encaixadoLateral == bl.id) {
                 blAlvo.encaixadoLateral = 0;
                 blocos.set(blAlvo.id, blAlvo);
             }
@@ -1313,9 +1059,12 @@ public class MainInterativo extends javax.swing.JFrame {
         int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
         int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
 
-        Bloco01.setLocation(x, y);
-        blocos.set(1, blocoP1);
-        
+        blocoO.setLocation(x, y);
+        blocos.set(1, bl);
+    }
+    private void Bloco01MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco01MouseDragged
+        //Label IF
+        moveBloco(evt,blocoP1);
         
         for (Bloco bl : blocos) {
             //System.out.println("Controle " + bl.id);
@@ -1334,55 +1083,13 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void Bloco02MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco02MouseDragged
 
-        blocoP2.ret = Bloco02.getBounds();
-        blocoP2.retEncaixe = Bloco02.getBounds();
-        blocoP2.retEncaixeLateral = Bloco02.getBounds();
-        blocoP2.retEncaixe.x = blocoP2.retEncaixe.x + 25;
-        blocoP2.retEncaixe.y = blocoP2.retEncaixe.y + 25;
-        blocoP2.encaixado = 0;
-        blocoP2.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 2) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 2) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco02.setLocation(x, y);
-        blocos.set(2, blocoP2);
+        moveBloco(evt,blocoP2);
 
     }//GEN-LAST:event_Bloco02MouseDragged
 
     private void Bloco03MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco03MouseDragged
 
-        blocoP3.ret = Bloco03.getBounds();
-        blocoP3.retEncaixe = Bloco03.getBounds();
-        blocoP3.retEncaixeLateral = Bloco03.getBounds();
-        blocoP3.retEncaixe.x = blocoP3.retEncaixe.x + 25;
-        blocoP3.retEncaixe.y = blocoP3.retEncaixe.y + 25;
-        blocoP3.encaixado = 0;
-        blocoP3.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 3) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 3) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco03.setLocation(x, y);
-        blocos.set(3, blocoP3);
+        moveBloco(evt,blocoP3);
 
     }//GEN-LAST:event_Bloco03MouseDragged
 
@@ -1408,55 +1115,12 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_Bloco04VarMouseReleased
 
     private void Bloco04VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco04VarMouseDragged
-        blocoP4.ret = Bloco04Var.getBounds();
-        blocoP4.retEncaixe = Bloco04Var.getBounds();
-        blocoP4.retEncaixeLateral = Bloco04Var.getBounds();
-        blocoP4.retEncaixe.x = blocoP4.retEncaixe.x + 25;
-        blocoP4.retEncaixe.y = blocoP4.retEncaixe.y + 25;
-        blocoP4.encaixado = 0;
-        blocoP4.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 4) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 4) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco04Var.setLocation(x, y);
-        blocos.set(4, blocoP4);
+        moveBloco(evt,blocoP4);
 
     }//GEN-LAST:event_Bloco04VarMouseDragged
 
     private void Bloco08VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco08VarUMouseDragged
-        blocoP8.ret = Bloco08VarU.getBounds();
-        blocoP8.retEncaixe = Bloco08VarU.getBounds();
-        blocoP8.retEncaixeLateral = Bloco08VarU.getBounds();
-        blocoP8.retEncaixe.x = blocoP8.retEncaixe.x + 25;
-        blocoP8.encaixado = 0;
-        blocoP8.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 8) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 8) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco08VarU.setLocation(x, y);
-        blocos.set(8, blocoP8);
-
-
+        moveBloco(evt,blocoP8);
     }//GEN-LAST:event_Bloco08VarUMouseDragged
 
     private void Bloco08VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco08VarUMouseReleased
@@ -1464,28 +1128,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_Bloco08VarUMouseReleased
 
     private void Bloco05VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco05VarMouseDragged
-        blocoP5.ret = Bloco05Var.getBounds();
-        blocoP5.retEncaixe = Bloco05Var.getBounds();
-        blocoP5.retEncaixeLateral = Bloco05Var.getBounds();
-        blocoP5.retEncaixe.x = blocoP5.retEncaixe.x + 25;
-        blocoP5.retEncaixe.y = blocoP5.retEncaixe.y + 25;
-        blocoP5.encaixado = 0;
-        blocoP5.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 5) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 5) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco05Var.setLocation(x, y);
-        blocos.set(5, blocoP5);
+        moveBloco(evt,blocoP5);
     }//GEN-LAST:event_Bloco05VarMouseDragged
 
     private void Bloco05VarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco05VarMouseReleased
@@ -1493,27 +1136,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_Bloco05VarMouseReleased
 
     private void Bloco11OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco11OperMouseDragged
-        blocoP11.ret = Bloco11Oper.getBounds();
-        blocoP11.retEncaixe = Bloco11Oper.getBounds();
-        blocoP11.retEncaixeLateral = Bloco11Oper.getBounds();
-        blocoP11.retEncaixe.x = blocoP11.retEncaixe.x + 25;
-        blocoP11.encaixado = 0;
-        blocoP11.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 11) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 11) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco11Oper.setLocation(x, y);
-        blocos.set(11, blocoP11);
+        moveBloco(evt,blocoP11);
     }//GEN-LAST:event_Bloco11OperMouseDragged
 
     private void Bloco11OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco11OperMouseReleased
@@ -1541,28 +1164,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_VarDEC3ActionPerformed
 
     private void Bloco06VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco06VarMouseDragged
-        blocoP6.ret = Bloco06Var.getBounds();
-        blocoP6.retEncaixe = Bloco06Var.getBounds();
-        blocoP6.retEncaixeLateral = Bloco06Var.getBounds();
-        blocoP6.retEncaixe.x = blocoP6.retEncaixe.x + 25;
-        blocoP6.retEncaixe.y = blocoP6.retEncaixe.y + 25;
-        blocoP6.encaixado = 0;
-        blocoP6.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 6) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 6) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco06Var.setLocation(x, y);
-        blocos.set(6, blocoP6);
+        moveBloco(evt,blocoP6);
     }//GEN-LAST:event_Bloco06VarMouseDragged
 
     private void Bloco06VarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco06VarMouseReleased
@@ -1570,27 +1172,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_Bloco06VarMouseReleased
 
     private void Bloco09VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco09VarUMouseDragged
-        blocoP9.ret = Bloco09VarU.getBounds();
-        blocoP9.retEncaixe = Bloco09VarU.getBounds();
-        blocoP9.retEncaixeLateral = Bloco09VarU.getBounds();
-        blocoP9.retEncaixe.x = blocoP9.retEncaixe.x + 25;
-        blocoP9.encaixado = 0;
-        blocoP9.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 9) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 9) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco09VarU.setLocation(x, y);
-        blocos.set(9, blocoP9);
+        moveBloco(evt,blocoP9);
     }//GEN-LAST:event_Bloco09VarUMouseDragged
 
     private void Bloco09VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco09VarUMouseReleased
@@ -1598,27 +1180,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_Bloco09VarUMouseReleased
 
     private void Bloco07VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco07VarUMouseDragged
-        blocoP7.ret = Bloco07VarU.getBounds();
-        blocoP7.retEncaixe = Bloco07VarU.getBounds();
-        blocoP7.retEncaixeLateral = Bloco07VarU.getBounds();
-        blocoP7.retEncaixe.x = blocoP7.retEncaixe.x + 25;
-        blocoP7.encaixado = 0;
-        blocoP7.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 7) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 7) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-        
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco07VarU.setLocation(x, y);
-        blocos.set(7, blocoP7);
+        moveBloco(evt,blocoP7);
     }//GEN-LAST:event_Bloco07VarUMouseDragged
 
     private void Bloco07VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco07VarUMouseReleased
@@ -1626,27 +1188,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_Bloco07VarUMouseReleased
 
     private void Bloco12OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco12OperMouseDragged
-        blocoP12.ret = Bloco12Oper.getBounds();
-        blocoP12.retEncaixe = Bloco12Oper.getBounds();
-        blocoP12.retEncaixeLateral = Bloco12Oper.getBounds();
-        blocoP12.retEncaixe.x = blocoP12.retEncaixe.x + 25;
-        blocoP12.encaixado = 0;
-        blocoP12.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 12) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 12) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco12Oper.setLocation(x, y);
-        blocos.set(12, blocoP12);
+        moveBloco(evt,blocoP12);
     }//GEN-LAST:event_Bloco12OperMouseDragged
 
     private void Bloco12OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco12OperMouseReleased
@@ -1654,27 +1196,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_Bloco12OperMouseReleased
 
     private void Bloco10VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco10VarUMouseDragged
-        blocoP10.ret = Bloco10VarU.getBounds();
-        blocoP10.retEncaixe = Bloco10VarU.getBounds();
-        blocoP10.retEncaixeLateral = Bloco10VarU.getBounds();
-        blocoP10.retEncaixe.x = blocoP10.retEncaixe.x + 25;
-        blocoP10.encaixado = 0;
-        blocoP10.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 10) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 10) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco10VarU.setLocation(x, y);
-        blocos.set(10, blocoP10);
+        moveBloco(evt,blocoP10);
     }//GEN-LAST:event_Bloco10VarUMouseDragged
 
     private void Bloco10VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco10VarUMouseReleased
@@ -1719,55 +1241,15 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_VarDacValor3ActionPerformed
 
     private void Bloco13OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco13OperMouseDragged
-        blocoP13.ret = Bloco13Oper.getBounds();
-        blocoP13.retEncaixe = Bloco13Oper.getBounds();
-        blocoP13.retEncaixeLateral = Bloco13Oper.getBounds();
-        blocoP13.retEncaixe.x = blocoP13.retEncaixe.x + 25;
-        blocoP13.encaixado = 0;
-        blocoP13.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 13) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 13) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco13Oper.setLocation(x, y);
-        blocos.set(13, blocoP13);
+        moveBloco(evt,blocoP13);
     }//GEN-LAST:event_Bloco13OperMouseDragged
 
     private void Bloco13OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco13OperMouseReleased
         encaixa(blocoP13);
     }//GEN-LAST:event_Bloco13OperMouseReleased
-
+ 
     private void Bloco14OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco14OperMouseDragged
-        blocoP14.ret = Bloco14Oper.getBounds();
-        blocoP14.retEncaixe = Bloco14Oper.getBounds();
-        blocoP14.retEncaixeLateral = Bloco14Oper.getBounds();
-        blocoP14.retEncaixe.x = blocoP14.retEncaixe.x + 25;
-        blocoP14.encaixado = 0;
-        blocoP14.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 14) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 14) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco14Oper.setLocation(x, y);
-        blocos.set(14, blocoP14);
+        moveBloco(evt,blocoP4);
     }//GEN-LAST:event_Bloco14OperMouseDragged
 
     private void Bloco14OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco14OperMouseReleased
@@ -1775,27 +1257,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_Bloco14OperMouseReleased
 
     private void Bloco15OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco15OperMouseDragged
-        blocoP15.ret = Bloco15Oper.getBounds();
-        blocoP15.retEncaixe = Bloco15Oper.getBounds();
-        blocoP15.retEncaixeLateral = Bloco15Oper.getBounds();
-        blocoP15.retEncaixe.x = blocoP15.retEncaixe.x + 25;
-        blocoP15.encaixado = 0;
-        blocoP15.encaixadoLateral = 0;
-        for (Bloco blAlvo : blocos) {
-            if (blAlvo.encaixado == 15) {
-                blAlvo.encaixado = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-            if (blAlvo.encaixadoLateral == 15) {
-                blAlvo.encaixadoLateral = 0;
-                blocos.set(blAlvo.id, blAlvo);
-            }
-        }
-
-        int x = evt.getLocationOnScreen().x - 62 - jPanel1.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - jPanel1.getLocationOnScreen().y;
-        Bloco15Oper.setLocation(x, y);
-        blocos.set(15, blocoP15);
+        moveBloco(evt,blocoP15);
     }//GEN-LAST:event_Bloco15OperMouseDragged
 
     private void Bloco15OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco15OperMouseReleased
@@ -1804,6 +1266,8 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         repositionPanels(jPanel1);
+        atualizaABlocos();
+        System.out.println("Winmdsow");
     }//GEN-LAST:event_formWindowActivated
 
     private void VariaveisMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VariaveisMouseMoved

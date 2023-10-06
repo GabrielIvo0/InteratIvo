@@ -291,6 +291,9 @@
             <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="Bloco02MouseDragged"/>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Bloco02MouseReleased"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="MainInterativo_Bloco02"/>
+          </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -321,11 +324,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Escreva"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="MainInterativo_jLabel2"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="print">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="MainInterativo_print"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

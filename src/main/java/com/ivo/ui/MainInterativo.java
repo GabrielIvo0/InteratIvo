@@ -275,23 +275,9 @@ public class MainInterativo extends javax.swing.JFrame {
         jLabel6.setText("Variável");
 
         VarDEC.setText("Nome");
-        VarDEC.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                VarDECAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         VarDEC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VarDECActionPerformed(evt);
-            }
-        });
-        VarDEC.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                VarDECKeyTyped(evt);
             }
         });
 
@@ -770,11 +756,6 @@ public class MainInterativo extends javax.swing.JFrame {
                 Variaveis4MousePressed(evt);
             }
         });
-        Variaveis4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Variaveis4ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout Bloco10VarULayout = new javax.swing.GroupLayout(Bloco10VarU);
         Bloco10VarU.setLayout(Bloco10VarULayout);
@@ -1033,7 +1014,7 @@ public class MainInterativo extends javax.swing.JFrame {
                         .addComponent(Bloco09VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Bloco08VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Bloco07VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(85, 85, 85))
         );
         jPanel1Layout.setVerticalGroup(
@@ -1075,7 +1056,7 @@ public class MainInterativo extends javax.swing.JFrame {
                     .addComponent(Bloco10VarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Bloco16IF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLayeredPane1)
         );
@@ -1106,7 +1087,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    String[] Nomelist= new String[3];
+    String[][] Nomelist= new String[3][2];
     Bloco blocoP0 = new Bloco();
     Bloco blocoP1 = new Bloco();
     Bloco blocoP2 = new Bloco();
@@ -1244,6 +1225,7 @@ public class MainInterativo extends javax.swing.JFrame {
                         }*/
                    return false;     
     }
+    //Tentativa de desserialização
     /*public static javax.swing.JPanel clonarPanel(javax.swing.JPanel panelOriginal) {
         try {
             // Serializa o JPanel original
@@ -1400,14 +1382,17 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void VarDECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDECActionPerformed
         addVariavel(evt.getActionCommand(),0);
+        blocoP4.nome = evt.getActionCommand();
     }//GEN-LAST:event_VarDECActionPerformed
 
     private void VarDEC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDEC1ActionPerformed
         addVariavel(evt.getActionCommand(),1);
+        blocoP5.nome = evt.getActionCommand();
     }//GEN-LAST:event_VarDEC1ActionPerformed
 
     private void VarDEC3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDEC3ActionPerformed
         addVariavel(evt.getActionCommand(),2);
+        blocoP6.nome = evt.getActionCommand();
     }//GEN-LAST:event_VarDEC3ActionPerformed
 
     private void Bloco06VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco06VarMouseDragged
@@ -1458,7 +1443,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void VisuCódigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisuCódigoMouseClicked
         System.out.println("TESDTEVisu");
-        jCodigo.setBlocos(blocos);//Chama o metodo para criar o código
+        jCodigo.setBlocos(blocos, Nomelist);//Chama o metodo para criar o código
         JFrame frame = new JFrame("Visualização do Código");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
         frame.getContentPane().add(jCodigo); // Adiciona o painel da nova janela ao JFrame
@@ -1469,20 +1454,18 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_VisuCódigoMouseClicked
 
     private void VarDacValor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDacValor1ActionPerformed
-        // TODO add your handling code here:
-        
+        Nomelist[0][1] = evt.getActionCommand();
+        blocoP4.dados = evt.getActionCommand();
     }//GEN-LAST:event_VarDacValor1ActionPerformed
 
     private void VarDacValor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDacValor2ActionPerformed
-        // TODO add your handling code here:
+        Nomelist[1][1] = evt.getActionCommand();
         blocoP5.dados = evt.getActionCommand();
-        blocoP8.dados = evt.getActionCommand();
     }//GEN-LAST:event_VarDacValor2ActionPerformed
 
     private void VarDacValor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDacValor3ActionPerformed
-        // TODO add your handling code here:
-        blocoP6.dados = evt.getActionCommand();
-        blocoP9.dados = evt.getActionCommand();
+        Nomelist[2][1] = evt.getActionCommand();
+        blocoP6.dados= evt.getActionCommand();
     }//GEN-LAST:event_VarDacValor3ActionPerformed
 
     private void Bloco13OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco13OperMouseDragged
@@ -1525,6 +1508,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void VariaveisPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_VariaveisPopupMenuWillBecomeInvisible
        repositionPanels(jPanel1);
+       blocoP1.dados = Variaveis.getSelectedItem().toString();
     }//GEN-LAST:event_VariaveisPopupMenuWillBecomeInvisible
 
     private void VariaveisPopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_VariaveisPopupMenuCanceled
@@ -1583,6 +1567,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void Variaveis1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis1PopupMenuWillBecomeInvisible
         repositionPanels(jPanel1);
+        blocoP7.dados = Variaveis1.getSelectedItem().toString();
     }//GEN-LAST:event_Variaveis1PopupMenuWillBecomeInvisible
 
     private void Variaveis1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis1PopupMenuWillBecomeVisible
@@ -1611,6 +1596,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void Variaveis2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis2PopupMenuWillBecomeInvisible
         repositionPanels(jPanel1);
+        blocoP8.dados = Variaveis2.getSelectedItem().toString();
     }//GEN-LAST:event_Variaveis2PopupMenuWillBecomeInvisible
 
     private void Variaveis2PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis2PopupMenuWillBecomeVisible
@@ -1639,6 +1625,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void Variaveis3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis3PopupMenuWillBecomeInvisible
         repositionPanels(jPanel1);
+        blocoP9.dados = Variaveis3.getSelectedItem().toString();
     }//GEN-LAST:event_Variaveis3PopupMenuWillBecomeInvisible
 
     private void Variaveis3PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis3PopupMenuWillBecomeVisible
@@ -1667,6 +1654,7 @@ public class MainInterativo extends javax.swing.JFrame {
     
     private void Variaveis4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis4PopupMenuWillBecomeInvisible
         repositionPanels(jPanel1);
+        blocoP10.dados = Variaveis4.getSelectedItem().toString();
     }//GEN-LAST:event_Variaveis4PopupMenuWillBecomeInvisible
 
     private void Variaveis4PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis4PopupMenuWillBecomeVisible
@@ -1680,36 +1668,24 @@ public class MainInterativo extends javax.swing.JFrame {
     private void Variaveis4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis4MousePressed
         repositionPanels(jPanel1);
     }//GEN-LAST:event_Variaveis4MousePressed
-
-    private void Variaveis4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Variaveis4ActionPerformed
-        repositionPanels(jPanel1);
-    }//GEN-LAST:event_Variaveis4ActionPerformed
-
-    private void VarDECKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_VarDECKeyTyped
-        
-    }//GEN-LAST:event_VarDECKeyTyped
-
-    private void VarDECAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_VarDECAncestorAdded
-        
-    }//GEN-LAST:event_VarDECAncestorAdded
     
     private void addVariavel(String item,int i){
         //Fazer uma matriz para adicionar os valores, aí passa tudo pra classe do codigo
-        Nomelist[i] = item;
+        Nomelist[i][0] = item;
         Variaveis.removeAllItems();
         Variaveis1.removeAllItems();
         Variaveis2.removeAllItems();
         Variaveis3.removeAllItems();
         Variaveis4.removeAllItems();
         
-        for (String string : Nomelist) {
+        for (int x = 0 ; x < 3 ; x++ ) {
+            String string = Nomelist[x][0];
             Variaveis.addItem(string);
             Variaveis1.addItem(string);
             Variaveis2.addItem(string);
             Variaveis3.addItem(string);
             Variaveis4.addItem(string);
         }
-        
     }
     
     private Código jCodigo = new Código();

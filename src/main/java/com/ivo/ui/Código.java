@@ -24,94 +24,51 @@ public class Código extends javax.swing.JPanel {
                       public class Codigo {
                           public static void main(String[] args) {
                       """);
+///////////////////////////////////////////////////
+
 
         int i = blocos.get(0).encaixado;
+        codigo.append("      ");//Começo pulo de linha
         boolean end = true;
         while (end) {
+            if(escreveBlocos(i)!=null){codigo.append(escreveBlocos(i));}
+            else{System.out.println("Erro codigo");}
+            if(blocos.get(i).encaixadoLateral!=0){
+                i = blocos.get(i).encaixadoLateral;
+            }else{
+                if(blocos.get(i).encaixado==0){
+                    end = false;
+                }else{
+                    codigo.append("\n      ");//Começo pulo de linha
+                }
+            }
+        }
+        
+////////////////////////////////////////////////////
 
-            switch (i) {
+        codigo.append("""
+                         }
+                      }""");
+        TextoCodigo.setText(codigo.toString());
+    }
+    
+    public StringBuilder escreveBlocos(int i){
+        StringBuilder codigo = new StringBuilder();
+        switch (i) {
                 case 1:
-                    //Operação
-                    int x = 1;
-                    codigo.append("      ");
-                    boolean lateral = true;
-                    x = blocos.get(x).encaixadoLateral;
-                    while (lateral) {
-
-                        //System.out.println("Tesstaaa" + " Valor de X: " + x + "; " + blocos.get(x).encaixadoLateral);
-                        //TESTAR QUAL BLOCO ELE FICA PARADOO
-                        switch (x) {
-                            case 7, 8, 9, 10 -> {
-                                codigo.append(" " + blocos.get(x).nome + " ");
-                                x = blocos.get(x).encaixadoLateral;
-                            }
-                            case 11 -> {
-                                System.out.println(" + ");
-                                codigo.append(" + ");
-                                x = blocos.get(x).encaixadoLateral;
-                            }
-                            case 12 -> {
-                                codigo.append(" = ");
-                                x = blocos.get(x).encaixadoLateral;
-                            }
-                            case 13 -> {
-                                codigo.append(" - ");
-                                x = blocos.get(x).encaixadoLateral;
-                            }
-                            case 14 -> {
-                                codigo.append(" * ");
-                                x = blocos.get(x).encaixadoLateral;
-                            }
-                            case 15 -> {
-                                codigo.append(" / ");
-                                x = blocos.get(x).encaixadoLateral;
-                            }
-                            default -> {
-                                System.out.println("Saiu operação");
-                                lateral = false;
-                            }
-                        }
-                    }
                     i = blocos.get(i).encaixado;
                     codigo.append(";\n");
                     break;
                 case 2:
                     //Escreva
-
-                    codigo.append("      System.out.println(\""
-                            + blocos.get(2).dados + "\");\n");
+                    codigo.append("System.out.println(\""
+                            + blocos.get(2).dados + "\");");
                     i = blocos.get(2).encaixado;
                     break;
                 case 3:
                     //Retorna
                     codigo.append("      return ");
-                     x = 3;
-                     lateral = true;
-                    x = blocos.get(x).encaixadoLateral;
-                    while (lateral) {
-
-                        //System.out.println("Tesstaaa" + " Valor de X: " + x + "; " + blocos.get(x).encaixadoLateral);
-                        //TESTAR QUAL BLOCO ELE FICA PARADOO
-                        switch (x) {
-                            case 7, 8, 9, 10 -> {
-                                codigo.append(blocos.get(x).nome + " ");
-                                x = blocos.get(x).encaixadoLateral;
-                            }
-                            case 11 -> {
-                                System.out.println(" + ");
-                                codigo.append(" + ");
-                                x = blocos.get(x).encaixadoLateral;
-                            }
-                            case 12 -> {
-                                codigo.append(" = ");
-                                x = blocos.get(x).encaixadoLateral;
-                            }
-                            default -> {
-                                System.out.println("Saiu Return");
-                                lateral = false;
-                            }
-                        }
-                    }
+                     
                     i = blocos.get(i).encaixado;
                     codigo.append(";\n");
                     break;
@@ -133,15 +90,13 @@ public class Código extends javax.swing.JPanel {
                             + " = " + blocos.get(6).dados + ";\n");
                     i = blocos.get(6).encaixado;
                     break;
+                    
+                    
                 default:
-                    end = false;
+                    return null;
             }
-        }
-
-        codigo.append("""
-                         }
-                      }""");
-        TextoCodigo.setText(codigo.toString());
+    return codigo;
+    
     }
 
     @SuppressWarnings("unchecked")

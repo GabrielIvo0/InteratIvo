@@ -3,13 +3,8 @@ package com.ivo.ui;
 import com.ivo.tools.Bloco;
 
 import java.awt.Point;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 /**
  *
  * @author Gabriel Ivo
@@ -33,6 +28,8 @@ public class MainInterativo extends javax.swing.JFrame {
         blocoP13.id = 13;
         blocoP14.id = 14;
         blocoP15.id = 15;
+        blocoP16.id = 16;
+        blocoP17.id = 17;
         initComponents();
         blocoP0.ret = Bloco00.getBounds();
         blocoP0.retEncaixe = Bloco00.getBounds();
@@ -61,7 +58,7 @@ public class MainInterativo extends javax.swing.JFrame {
         VarDEC = new javax.swing.JTextField();
         VarDacValor1 = new javax.swing.JTextField();
         Bloco08VarU = new javax.swing.JPanel();
-        VarUSE1 = new javax.swing.JTextField();
+        Variaveis2 = new javax.swing.JComboBox<>();
         Bloco05Var = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         VarDEC1 = new javax.swing.JTextField();
@@ -76,19 +73,25 @@ public class MainInterativo extends javax.swing.JFrame {
         VarDEC3 = new javax.swing.JTextField();
         VarDacValor3 = new javax.swing.JTextField();
         Bloco09VarU = new javax.swing.JPanel();
-        VarUSE2 = new javax.swing.JTextField();
+        Variaveis3 = new javax.swing.JComboBox<>();
         Bloco07VarU = new javax.swing.JPanel();
-        VarUSE0 = new javax.swing.JTextField();
+        Variaveis1 = new javax.swing.JComboBox<>();
         Bloco12Oper = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         Bloco10VarU = new javax.swing.JPanel();
-        VarUSE03 = new javax.swing.JTextField();
+        Variaveis4 = new javax.swing.JComboBox<>();
         Bloco13Oper = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         Bloco14Oper = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         Bloco15Oper = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        Bloco16IF = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        ifEntrada = new javax.swing.JTextField();
+        Bloco17Else = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        ifEntrada1 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         VisuCódigo = new javax.swing.JMenu();
@@ -248,7 +251,7 @@ public class MainInterativo extends javax.swing.JFrame {
             .addGroup(Bloco03Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel3)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Bloco03Layout.setVerticalGroup(
             Bloco03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,9 +275,23 @@ public class MainInterativo extends javax.swing.JFrame {
         jLabel6.setText("Variável");
 
         VarDEC.setText("Nome");
+        VarDEC.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                VarDECAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         VarDEC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VarDECActionPerformed(evt);
+            }
+        });
+        VarDEC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                VarDECKeyTyped(evt);
             }
         });
 
@@ -322,24 +339,54 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        VarUSE1.setEditable(false);
-        VarUSE1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Variaveis2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
+        Variaveis2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Variaveis2MouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                Variaveis2MouseMoved(evt);
+            }
+        });
+        Variaveis2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis2PopupMenuCanceled(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis2PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis2PopupMenuWillBecomeVisible(evt);
+            }
+        });
+        Variaveis2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Variaveis2MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Variaveis2MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Bloco08VarULayout = new javax.swing.GroupLayout(Bloco08VarU);
         Bloco08VarU.setLayout(Bloco08VarULayout);
         Bloco08VarULayout.setHorizontalGroup(
             Bloco08VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Bloco08VarULayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(VarUSE1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(Bloco08VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Bloco08VarULayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Variaveis2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(9, Short.MAX_VALUE)))
         );
         Bloco08VarULayout.setVerticalGroup(
             Bloco08VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Bloco08VarULayout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(VarUSE1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 38, Short.MAX_VALUE)
+            .addGroup(Bloco08VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Bloco08VarULayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Variaveis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         Bloco05Var.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -537,24 +584,54 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        VarUSE2.setEditable(false);
-        VarUSE2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Variaveis3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
+        Variaveis3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Variaveis3MouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                Variaveis3MouseMoved(evt);
+            }
+        });
+        Variaveis3.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis3PopupMenuCanceled(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis3PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis3PopupMenuWillBecomeVisible(evt);
+            }
+        });
+        Variaveis3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Variaveis3MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Variaveis3MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Bloco09VarULayout = new javax.swing.GroupLayout(Bloco09VarU);
         Bloco09VarU.setLayout(Bloco09VarULayout);
         Bloco09VarULayout.setHorizontalGroup(
             Bloco09VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Bloco09VarULayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(VarUSE2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(Bloco09VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Bloco09VarULayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Variaveis3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(9, Short.MAX_VALUE)))
         );
         Bloco09VarULayout.setVerticalGroup(
             Bloco09VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Bloco09VarULayout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(VarUSE2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 38, Short.MAX_VALUE)
+            .addGroup(Bloco09VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Bloco09VarULayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Variaveis3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         Bloco07VarU.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -569,24 +646,54 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        VarUSE0.setEditable(false);
-        VarUSE0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Variaveis1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
+        Variaveis1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Variaveis1MouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                Variaveis1MouseMoved(evt);
+            }
+        });
+        Variaveis1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis1PopupMenuCanceled(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis1PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis1PopupMenuWillBecomeVisible(evt);
+            }
+        });
+        Variaveis1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Variaveis1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Variaveis1MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Bloco07VarULayout = new javax.swing.GroupLayout(Bloco07VarU);
         Bloco07VarU.setLayout(Bloco07VarULayout);
         Bloco07VarULayout.setHorizontalGroup(
             Bloco07VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Bloco07VarULayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(VarUSE0, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(Bloco07VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Bloco07VarULayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Variaveis1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(9, Short.MAX_VALUE)))
         );
         Bloco07VarULayout.setVerticalGroup(
             Bloco07VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Bloco07VarULayout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(VarUSE0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 38, Short.MAX_VALUE)
+            .addGroup(Bloco07VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Bloco07VarULayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Variaveis1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         Bloco12Oper.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -635,24 +742,59 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        VarUSE03.setEditable(false);
-        VarUSE03.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Variaveis4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
+        Variaveis4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Variaveis4MouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                Variaveis4MouseMoved(evt);
+            }
+        });
+        Variaveis4.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis4PopupMenuCanceled(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis4PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                Variaveis4PopupMenuWillBecomeVisible(evt);
+            }
+        });
+        Variaveis4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Variaveis4MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Variaveis4MousePressed(evt);
+            }
+        });
+        Variaveis4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Variaveis4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Bloco10VarULayout = new javax.swing.GroupLayout(Bloco10VarU);
         Bloco10VarU.setLayout(Bloco10VarULayout);
         Bloco10VarULayout.setHorizontalGroup(
             Bloco10VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Bloco10VarULayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(VarUSE03, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGap(0, 134, Short.MAX_VALUE)
+            .addGroup(Bloco10VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Bloco10VarULayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Variaveis4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(9, Short.MAX_VALUE)))
         );
         Bloco10VarULayout.setVerticalGroup(
             Bloco10VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Bloco10VarULayout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(VarUSE03, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(Bloco10VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Bloco10VarULayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Variaveis4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         Bloco13Oper.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -757,6 +899,101 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        Bloco16IF.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Bloco16IF.setAlignmentY(0.0F);
+        Bloco16IF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Bloco16IF.setMaximumSize(new java.awt.Dimension(45, 34));
+        Bloco16IF.setMinimumSize(new java.awt.Dimension(45, 34));
+        Bloco16IF.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Bloco16IFMouseDragged(evt);
+            }
+        });
+        Bloco16IF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Bloco16IFMouseReleased(evt);
+            }
+        });
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Se");
+
+        ifEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ifEntradaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Bloco16IFLayout = new javax.swing.GroupLayout(Bloco16IF);
+        Bloco16IF.setLayout(Bloco16IFLayout);
+        Bloco16IFLayout.setHorizontalGroup(
+            Bloco16IFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Bloco16IFLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ifEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        Bloco16IFLayout.setVerticalGroup(
+            Bloco16IFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Bloco16IFLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Bloco16IFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(ifEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        Bloco17Else.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Bloco17Else.setAlignmentY(0.0F);
+        Bloco17Else.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Bloco17Else.setMaximumSize(new java.awt.Dimension(45, 34));
+        Bloco17Else.setMinimumSize(new java.awt.Dimension(45, 34));
+        Bloco17Else.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Bloco17ElseMouseDragged(evt);
+            }
+        });
+        Bloco17Else.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Bloco17ElseMouseReleased(evt);
+            }
+        });
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Se Não");
+
+        ifEntrada1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ifEntrada1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Bloco17ElseLayout = new javax.swing.GroupLayout(Bloco17Else);
+        Bloco17Else.setLayout(Bloco17ElseLayout);
+        Bloco17ElseLayout.setHorizontalGroup(
+            Bloco17ElseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Bloco17ElseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(ifEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3))
+        );
+        Bloco17ElseLayout.setVerticalGroup(
+            Bloco17ElseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Bloco17ElseLayout.createSequentialGroup()
+                .addGroup(Bloco17ElseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Bloco17ElseLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel12))
+                    .addGroup(Bloco17ElseLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(ifEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -768,31 +1005,36 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Bloco03, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Bloco02, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Bloco01, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, Short.MAX_VALUE))
+                    .addComponent(Bloco16IF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Bloco11Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Bloco13Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Bloco14Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Bloco12Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(Bloco15Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Bloco03, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Bloco02, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Bloco01, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Bloco11Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Bloco13Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Bloco14Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Bloco12Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Bloco15Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(Bloco05Var, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Bloco04Var, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Bloco06Var, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Bloco07VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Bloco08VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Bloco10VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Bloco09VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(80, Short.MAX_VALUE))
+                        .addComponent(Bloco09VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Bloco08VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Bloco07VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(85, 85, 85))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -805,14 +1047,14 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Bloco02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Bloco03, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Bloco05Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(Bloco06Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Bloco06Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Bloco02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Bloco03, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Bloco07VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -829,8 +1071,12 @@ public class MainInterativo extends javax.swing.JFrame {
                     .addComponent(Bloco15Oper, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Bloco09VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Bloco10VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Bloco10VarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Bloco16IF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLayeredPane1)
         );
 
@@ -860,7 +1106,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    String[] Nomelist= new String[3];
     Bloco blocoP0 = new Bloco();
     Bloco blocoP1 = new Bloco();
     Bloco blocoP2 = new Bloco();
@@ -877,6 +1123,8 @@ public class MainInterativo extends javax.swing.JFrame {
     Bloco blocoP13 = new Bloco();
     Bloco blocoP14 = new Bloco();
     Bloco blocoP15 = new Bloco();
+    Bloco blocoP16 = new Bloco();
+    Bloco blocoP17 = new Bloco();
 
     public ArrayList<javax.swing.JPanel> blocosS = new ArrayList<javax.swing.JPanel>() {//TESTEEE
         {
@@ -896,6 +1144,8 @@ public class MainInterativo extends javax.swing.JFrame {
             add(Bloco13Oper);
             add(Bloco14Oper);
             add(Bloco15Oper);
+            add(Bloco16IF);
+            add(Bloco17Else);
         }
     };
     public void atualizaABlocos (){
@@ -915,6 +1165,8 @@ public class MainInterativo extends javax.swing.JFrame {
             blocosS.set(13, Bloco13Oper);
             blocosS.set(14, Bloco14Oper);
             blocosS.set(15, Bloco15Oper);
+            blocosS.set(16, Bloco16IF);
+            blocosS.set(17, Bloco17Else);
     }
     public ArrayList<Bloco> blocos = new ArrayList<Bloco>() {
         {
@@ -934,15 +1186,16 @@ public class MainInterativo extends javax.swing.JFrame {
             add(blocoP13);
             add(blocoP14);
             add(blocoP15);
+            add(blocoP16);
+            add(blocoP17);
         }
     };
     
     public void encaixaBloco(Bloco blAlvo, Bloco bl, boolean lateral){
-        //Encaixa tudo
+        //Encaixa o bloco e faz as atualizações de posição e das áreas de encaixe
         Point loc;
-        //atualizaABlocos ();
         javax.swing.JPanel blocoO = blocosS.get(bl.id);
-        if(lateral){
+        if(lateral){//verifica se o encaixe é lateral
             loc = blAlvo.ret.getLocation();
             loc.x = (blAlvo.ret.getBounds().x) + (blAlvo.ret.getBounds().width);
             blAlvo.encaixadoLateral = bl.id;
@@ -1013,9 +1266,8 @@ public class MainInterativo extends javax.swing.JFrame {
             return null;
         }
     }*/
-    //TESTAR E O JPANEL PASSA POR CHAMADA DE METODOS SE DA PRA ALTERAR A LOCATION DELES POR METODO, NA VDD USAR O ARRAY LIST
     public void encaixa(Bloco bl) {
-        //Verifica qual bloco está encaixando em qual e muda a localização para encaixar
+        //Verifica qual bloco vai ser feito o encaixe e chama a função para encaixar.
         boolean achou = false;
         for (Bloco blAlvo : blocos) {
             if ((bl.ret.intersects(blAlvo.retEncaixe) || bl.ret.intersects(blAlvo.retEncaixeLateral)) &&
@@ -1030,11 +1282,17 @@ public class MainInterativo extends javax.swing.JFrame {
                         }
                     }
                     achou = true;
-                    System.out.println("operacao ENCAIXOU com " + blAlvo.id);
+                    System.out.println(bl.id + " ENCAIXOU com " + blAlvo.id);
             }
         }
     }
+    
+    
+    
+    
     private void moveBloco(java.awt.event.MouseEvent evt,Bloco bl){
+        // Metodo para mover o bloco, é executado no mouseDragged, 
+        // movimenta a partir do mouse e faz as atualizações das variaveis de encaxe, e salva nos arrays de armazenagem de dados.
         javax.swing.JPanel blocoO = blocosS.get(bl.id);
         bl.ret = blocoO.getBounds();
         bl.retEncaixe = blocoO.getBounds();
@@ -1060,10 +1318,10 @@ public class MainInterativo extends javax.swing.JFrame {
         blocos.set(bl.id, bl);
     }
     private void Bloco01MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco01MouseDragged
-        //Label IF
+        
         moveBloco(evt,blocoP1);
         
-        for (Bloco bl : blocos) {
+        for (Bloco bl : blocos) {//Teste para saber qual area está sendo interceptada
             //System.out.println("Controle " + bl.id);
             if(bl.id == 1){continue;}
             if(blocoP1.ret.intersects(bl.retEncaixe)){
@@ -1141,23 +1399,15 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_Bloco11OperMouseReleased
 
     private void VarDECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDECActionPerformed
-        VarUSE0.setText(evt.getActionCommand());
-        VarUSE03.setText(evt.getActionCommand());
-        blocoP4.nome = evt.getActionCommand();
-        blocoP7.nome = evt.getActionCommand();
-        blocoP10.nome = evt.getActionCommand();
+        addVariavel(evt.getActionCommand(),0);
     }//GEN-LAST:event_VarDECActionPerformed
 
     private void VarDEC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDEC1ActionPerformed
-        VarUSE1.setText(evt.getActionCommand());
-        blocoP5.nome = evt.getActionCommand();
-        blocoP8.nome = evt.getActionCommand();
+        addVariavel(evt.getActionCommand(),1);
     }//GEN-LAST:event_VarDEC1ActionPerformed
 
     private void VarDEC3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDEC3ActionPerformed
-        VarUSE2.setText(evt.getActionCommand());
-        blocoP6.nome = evt.getActionCommand();
-        blocoP9.nome = evt.getActionCommand();
+        addVariavel(evt.getActionCommand(),2);
     }//GEN-LAST:event_VarDEC3ActionPerformed
 
     private void Bloco06VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco06VarMouseDragged
@@ -1208,7 +1458,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void VisuCódigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisuCódigoMouseClicked
         System.out.println("TESDTEVisu");
-        jCodigo.setBlocos(blocos);
+        jCodigo.setBlocos(blocos);//Chama o metodo para criar o código
         JFrame frame = new JFrame("Visualização do Código");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
         frame.getContentPane().add(jCodigo); // Adiciona o painel da nova janela ao JFrame
@@ -1220,9 +1470,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
     private void VarDacValor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDacValor1ActionPerformed
         // TODO add your handling code here:
-        blocoP4.dados = evt.getActionCommand();
-        blocoP7.dados = evt.getActionCommand();
-        blocoP10.dados = evt.getActionCommand();
+        
     }//GEN-LAST:event_VarDacValor1ActionPerformed
 
     private void VarDacValor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VarDacValor2ActionPerformed
@@ -1294,6 +1542,176 @@ public class MainInterativo extends javax.swing.JFrame {
     private void VariaveisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VariaveisMousePressed
         repositionPanels(jPanel1);
     }//GEN-LAST:event_VariaveisMousePressed
+
+    private void ifEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifEntradaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ifEntradaActionPerformed
+
+    private void Bloco16IFMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco16IFMouseDragged
+       moveBloco(evt,blocoP16);
+    }//GEN-LAST:event_Bloco16IFMouseDragged
+
+    private void Bloco16IFMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco16IFMouseReleased
+       encaixa(blocoP16);
+    }//GEN-LAST:event_Bloco16IFMouseReleased
+
+    private void ifEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifEntrada1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ifEntrada1ActionPerformed
+
+    private void Bloco17ElseMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco17ElseMouseDragged
+        moveBloco(evt,blocoP17);
+    }//GEN-LAST:event_Bloco17ElseMouseDragged
+
+    private void Bloco17ElseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bloco17ElseMouseReleased
+        encaixa(blocoP17);
+    }//GEN-LAST:event_Bloco17ElseMouseReleased
+
+    private void Variaveis1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis1MouseDragged
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis1MouseDragged
+
+    private void Variaveis1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis1MouseMoved
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis1MouseMoved
+
+    private void Variaveis1PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis1PopupMenuCanceled
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis1PopupMenuCanceled
+
+    private void Variaveis1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis1PopupMenuWillBecomeInvisible
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis1PopupMenuWillBecomeInvisible
+
+    private void Variaveis1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis1PopupMenuWillBecomeVisible
+       repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis1PopupMenuWillBecomeVisible
+
+    private void Variaveis1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis1MouseClicked
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis1MouseClicked
+
+    private void Variaveis1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis1MousePressed
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis1MousePressed
+
+    private void Variaveis2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis2MouseDragged
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis2MouseDragged
+
+    private void Variaveis2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis2MouseMoved
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis2MouseMoved
+
+    private void Variaveis2PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis2PopupMenuCanceled
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis2PopupMenuCanceled
+
+    private void Variaveis2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis2PopupMenuWillBecomeInvisible
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis2PopupMenuWillBecomeInvisible
+
+    private void Variaveis2PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis2PopupMenuWillBecomeVisible
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis2PopupMenuWillBecomeVisible
+
+    private void Variaveis2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis2MouseClicked
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis2MouseClicked
+
+    private void Variaveis2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis2MousePressed
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis2MousePressed
+
+    private void Variaveis3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis3MouseDragged
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis3MouseDragged
+
+    private void Variaveis3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis3MouseMoved
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis3MouseMoved
+
+    private void Variaveis3PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis3PopupMenuCanceled
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis3PopupMenuCanceled
+
+    private void Variaveis3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis3PopupMenuWillBecomeInvisible
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis3PopupMenuWillBecomeInvisible
+
+    private void Variaveis3PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis3PopupMenuWillBecomeVisible
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis3PopupMenuWillBecomeVisible
+
+    private void Variaveis3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis3MouseClicked
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis3MouseClicked
+
+    private void Variaveis3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis3MousePressed
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis3MousePressed
+
+    private void Variaveis4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis4MouseDragged
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis4MouseDragged
+
+    private void Variaveis4MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis4MouseMoved
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis4MouseMoved
+
+    private void Variaveis4PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis4PopupMenuCanceled
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis4PopupMenuCanceled
+    
+    private void Variaveis4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis4PopupMenuWillBecomeInvisible
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis4PopupMenuWillBecomeInvisible
+
+    private void Variaveis4PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_Variaveis4PopupMenuWillBecomeVisible
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis4PopupMenuWillBecomeVisible
+
+    private void Variaveis4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis4MouseClicked
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis4MouseClicked
+
+    private void Variaveis4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Variaveis4MousePressed
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis4MousePressed
+
+    private void Variaveis4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Variaveis4ActionPerformed
+        repositionPanels(jPanel1);
+    }//GEN-LAST:event_Variaveis4ActionPerformed
+
+    private void VarDECKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_VarDECKeyTyped
+        
+    }//GEN-LAST:event_VarDECKeyTyped
+
+    private void VarDECAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_VarDECAncestorAdded
+        
+    }//GEN-LAST:event_VarDECAncestorAdded
+    
+    private void addVariavel(String item,int i){
+        //Fazer uma matriz para adicionar os valores, aí passa tudo pra classe do codigo
+        Nomelist[i] = item;
+        Variaveis.removeAllItems();
+        Variaveis1.removeAllItems();
+        Variaveis2.removeAllItems();
+        Variaveis3.removeAllItems();
+        Variaveis4.removeAllItems();
+        
+        for (String string : Nomelist) {
+            Variaveis.addItem(string);
+            Variaveis1.addItem(string);
+            Variaveis2.addItem(string);
+            Variaveis3.addItem(string);
+            Variaveis4.addItem(string);
+        }
+        
+    }
+    
     private Código jCodigo = new Código();
 
     /**
@@ -1356,6 +1774,8 @@ public class MainInterativo extends javax.swing.JFrame {
             if(!blocoP13.getRet().getLocation().equals(pt))Bloco13Oper.setLocation(blocoP13.getRet().getLocation());
             if(!blocoP14.getRet().getLocation().equals(pt))Bloco14Oper.setLocation(blocoP14.getRet().getLocation());
             if(!blocoP15.getRet().getLocation().equals(pt))Bloco15Oper.setLocation(blocoP15.getRet().getLocation());
+            if(!blocoP16.getRet().getLocation().equals(pt))Bloco16IF.setLocation(blocoP16.getRet().getLocation());
+            if(!blocoP17.getRet().getLocation().equals(pt))Bloco17Else.setLocation(blocoP17.getRet().getLocation());
             
    }
     
@@ -1379,26 +1799,32 @@ public class MainInterativo extends javax.swing.JFrame {
     javax.swing.JPanel Bloco13Oper;
     javax.swing.JPanel Bloco14Oper;
     javax.swing.JPanel Bloco15Oper;
+    javax.swing.JPanel Bloco16IF;
+    javax.swing.JPanel Bloco17Else;
     javax.swing.JTextField VarDEC;
     javax.swing.JTextField VarDEC1;
     javax.swing.JTextField VarDEC3;
     javax.swing.JTextField VarDacValor1;
     javax.swing.JTextField VarDacValor2;
     javax.swing.JTextField VarDacValor3;
-    javax.swing.JTextField VarUSE0;
-    javax.swing.JTextField VarUSE03;
-    javax.swing.JTextField VarUSE1;
-    javax.swing.JTextField VarUSE2;
     javax.swing.JComboBox<String> Variaveis;
+    javax.swing.JComboBox<String> Variaveis1;
+    javax.swing.JComboBox<String> Variaveis2;
+    javax.swing.JComboBox<String> Variaveis3;
+    javax.swing.JComboBox<String> Variaveis4;
     javax.swing.JMenu VisuCódigo;
+    javax.swing.JTextField ifEntrada;
+    javax.swing.JTextField ifEntrada1;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
     javax.swing.JLabel jLabel11;
+    javax.swing.JLabel jLabel12;
     javax.swing.JLabel jLabel13;
     javax.swing.JLabel jLabel14;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
+    javax.swing.JLabel jLabel5;
     javax.swing.JLabel jLabel6;
     javax.swing.JLabel jLabel7;
     javax.swing.JLabel jLabel8;

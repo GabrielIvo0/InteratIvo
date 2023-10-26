@@ -4,10 +4,16 @@ import bsh.EvalError;
 import com.ivo.tools.Bloco;
 
 import bsh.Interpreter;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.io.PrintStream;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -15,6 +21,10 @@ import javax.swing.JFrame;
  * @author Gabriel Ivo
  */
 public class MainInterativo extends javax.swing.JFrame {
+    
+    /*
+    FAZER UM CONCERTO NO ENCAIXAR, PRA ANALISAR TODOS OS INTERCEPTS ANTES PRA N BLOQUEAR SENDO QUE T
+    */
 
     public MainInterativo() {
         blocoP0.id = 0;
@@ -37,7 +47,16 @@ public class MainInterativo extends javax.swing.JFrame {
         blocoP17.id = 17;
         blocoP18.id = 18;
         blocoP19.id = 19;
+        blocoP20.id = 20;
+        blocoP21.id = 21;
+        blocoP22.id = 22;
+        blocoP23.id = 23;
+        blocoP24.id = 24;
+        blocoP25.id = 25;
+        blocoP26.id = 26;
+        blocoP27.id = 27;
         initComponents();
+        
         blocoP0.ret = bloco00.getBounds();
         blocoP0.retEncaixe = bloco00.getBounds();
         blocoP0.ret.x = blocoP0.ret.x + 7;
@@ -53,8 +72,7 @@ public class MainInterativo extends javax.swing.JFrame {
         panelPrincipal = new javax.swing.JPanel();
         separador = new javax.swing.JSeparator();
         bloco01 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        variaveis0 = new javax.swing.JComboBox<>();
+        botaoVar0 = new javax.swing.JButton();
         bloco02 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         print = new javax.swing.JTextField();
@@ -65,7 +83,7 @@ public class MainInterativo extends javax.swing.JFrame {
         varDec = new javax.swing.JTextField();
         varDecValor1 = new javax.swing.JTextField();
         bloco08VarU = new javax.swing.JPanel();
-        variaveis2 = new javax.swing.JComboBox<>();
+        botaoVar2 = new javax.swing.JButton();
         bloco05Var = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         varDec1 = new javax.swing.JTextField();
@@ -75,18 +93,14 @@ public class MainInterativo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         bloco11Oper = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        bloco06Var = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        varDec2 = new javax.swing.JTextField();
-        varDecValor3 = new javax.swing.JTextField();
         bloco09VarU = new javax.swing.JPanel();
-        variaveis3 = new javax.swing.JComboBox<>();
+        botaoVar3 = new javax.swing.JButton();
         bloco07VarU = new javax.swing.JPanel();
-        variaveis1 = new javax.swing.JComboBox<>();
+        botaoVar1 = new javax.swing.JButton();
         bloco12Oper = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         bloco10VarU = new javax.swing.JPanel();
-        variaveis4 = new javax.swing.JComboBox<>();
+        botaoVar4 = new javax.swing.JButton();
         bloco13Oper = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         bloco14Oper = new javax.swing.JPanel();
@@ -103,15 +117,43 @@ public class MainInterativo extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         bloco19 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
+        bloco06Var = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        varDec2 = new javax.swing.JTextField();
+        varDecValor3 = new javax.swing.JTextField();
+        bloco20VarU = new javax.swing.JPanel();
+        botaoVar5 = new javax.swing.JButton();
+        bloco21VarU = new javax.swing.JPanel();
+        botaoVar6 = new javax.swing.JButton();
+        bloco22VarU = new javax.swing.JPanel();
+        botaoVar7 = new javax.swing.JButton();
+        bloco23 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        bloco24 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        bloco26 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        bloco25 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        bloco27 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
         visuCodigo = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
         setLocation(new java.awt.Point(0, 0));
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -119,6 +161,7 @@ public class MainInterativo extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         panelPrincipal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelPrincipal.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         panelPrincipal.setDoubleBuffered(false);
@@ -132,7 +175,9 @@ public class MainInterativo extends javax.swing.JFrame {
         separador.setMinimumSize(new java.awt.Dimension(50, 5));
         separador.setPreferredSize(new java.awt.Dimension(50, 5));
 
-        bloco01.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco01.setBackground(new java.awt.Color(0, 153, 153));
+        bloco01.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco01.setForeground(new java.awt.Color(0, 51, 255));
         bloco01.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         bloco01.setMaximumSize(new java.awt.Dimension(138, 42));
         bloco01.setMinimumSize(new java.awt.Dimension(138, 42));
@@ -148,64 +193,13 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        variaveis0.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
-        variaveis0.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                variaveis0ItemStateChanged(evt);
-            }
-        });
-        variaveis0.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                variaveis0MouseDragged(evt);
-            }
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                variaveis0MouseMoved(evt);
-            }
-        });
-        variaveis0.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                variaveis0FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                variaveis0FocusLost(evt);
-            }
-        });
-        variaveis0.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-                variaveis0PopupMenuCanceled(evt);
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis0PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis0PopupMenuWillBecomeVisible(evt);
-            }
-        });
-        variaveis0.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoVar0.setBackground(new java.awt.Color(204, 255, 255));
+        botaoVar0.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        botaoVar0.setForeground(new java.awt.Color(0, 0, 0));
+        botaoVar0.setText(" ");
+        botaoVar0.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                variaveis0MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                variaveis0MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                variaveis0MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                variaveis0MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                variaveis0MouseReleased(evt);
-            }
-        });
-        variaveis0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                variaveis0ActionPerformed(evt);
-            }
-        });
-        variaveis0.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                variaveis0PropertyChange(evt);
+                botaoVar0MouseClicked(evt);
             }
         });
 
@@ -215,24 +209,19 @@ public class MainInterativo extends javax.swing.JFrame {
             bloco01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bloco01Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(variaveis0, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1))
+                .addComponent(botaoVar0, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         bloco01Layout.setVerticalGroup(
             bloco01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bloco01Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bloco01Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bloco01Layout.createSequentialGroup()
-                        .addComponent(variaveis0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(bloco01Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(5, 5, 5))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco01Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(botaoVar0, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        bloco02.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco02.setBackground(new java.awt.Color(0, 153, 153));
+        bloco02.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco02.setAlignmentY(0.0F);
         bloco02.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bloco02.setMaximumSize(new java.awt.Dimension(42, 34));
@@ -248,8 +237,12 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Escreva");
 
+        print.setBackground(new java.awt.Color(204, 255, 255));
+        print.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         print.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 printKeyReleased(evt);
@@ -263,7 +256,7 @@ public class MainInterativo extends javax.swing.JFrame {
             .addGroup(bloco02Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(print)
+                .addComponent(print, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bloco02Layout.setVerticalGroup(
@@ -276,8 +269,8 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bloco03.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        bloco03.setNextFocusableComponent(jLabel1);
+        bloco03.setBackground(new java.awt.Color(0, 153, 153));
+        bloco03.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco03.setPreferredSize(new java.awt.Dimension(77, 42));
         bloco03.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -290,6 +283,8 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Escreva:");
 
         javax.swing.GroupLayout bloco03Layout = new javax.swing.GroupLayout(bloco03);
@@ -298,7 +293,7 @@ public class MainInterativo extends javax.swing.JFrame {
             bloco03Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bloco03Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                 .addGap(11, 11, 11))
         );
         bloco03Layout.setVerticalGroup(
@@ -306,7 +301,8 @@ public class MainInterativo extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        bloco04Var.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco04Var.setBackground(new java.awt.Color(0, 153, 153));
+        bloco04Var.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco04Var.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 bloco04VarMouseDragged(evt);
@@ -318,8 +314,14 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Variável");
 
+        varDec.setBackground(new java.awt.Color(204, 255, 255));
+        varDec.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        varDec.setForeground(new java.awt.Color(51, 51, 51));
         varDec.setText("Nome");
         varDec.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -341,6 +343,9 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        varDecValor1.setBackground(new java.awt.Color(204, 255, 255));
+        varDecValor1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        varDecValor1.setForeground(new java.awt.Color(51, 51, 51));
         varDecValor1.setText("Valor");
         varDecValor1.setName(""); // NOI18N
         varDecValor1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -373,7 +378,8 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bloco08VarU.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco08VarU.setBackground(new java.awt.Color(0, 153, 153));
+        bloco08VarU.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco08VarU.setMaximumSize(new java.awt.Dimension(138, 42));
         bloco08VarU.setMinimumSize(new java.awt.Dimension(138, 42));
         bloco08VarU.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -387,54 +393,12 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        variaveis2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
-        variaveis2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                variaveis2MouseDragged(evt);
-            }
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                variaveis2MouseMoved(evt);
-            }
-        });
-        variaveis2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                variaveis2FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                variaveis2FocusLost(evt);
-            }
-        });
-        variaveis2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-                variaveis2PopupMenuCanceled(evt);
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis2PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis2PopupMenuWillBecomeVisible(evt);
-            }
-        });
-        variaveis2.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                variaveis2MouseWheelMoved(evt);
-            }
-        });
-        variaveis2.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoVar2.setBackground(new java.awt.Color(204, 255, 255));
+        botaoVar2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        botaoVar2.setForeground(new java.awt.Color(0, 0, 0));
+        botaoVar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                variaveis2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                variaveis2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                variaveis2MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                variaveis2MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                variaveis2MouseReleased(evt);
+                botaoVar2MouseClicked(evt);
             }
         });
 
@@ -442,24 +406,25 @@ public class MainInterativo extends javax.swing.JFrame {
         bloco08VarU.setLayout(bloco08VarULayout);
         bloco08VarULayout.setHorizontalGroup(
             bloco08VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
             .addGroup(bloco08VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(bloco08VarULayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(variaveis2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(9, Short.MAX_VALUE)))
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(29, Short.MAX_VALUE)))
         );
         bloco08VarULayout.setVerticalGroup(
             bloco08VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 38, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
             .addGroup(bloco08VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(bloco08VarULayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(variaveis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco08VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar2, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
-        bloco05Var.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco05Var.setBackground(new java.awt.Color(0, 153, 153));
+        bloco05Var.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco05Var.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 bloco05VarMouseDragged(evt);
@@ -471,8 +436,13 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Variável");
 
+        varDec1.setBackground(new java.awt.Color(204, 255, 255));
+        varDec1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        varDec1.setForeground(new java.awt.Color(51, 51, 51));
         varDec1.setText("Nome");
         varDec1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -494,6 +464,9 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        varDecValor2.setBackground(new java.awt.Color(204, 255, 255));
+        varDecValor2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        varDecValor2.setForeground(new java.awt.Color(51, 51, 51));
         varDecValor2.setText("Valor");
         varDecValor2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -511,7 +484,7 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(varDec1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(varDecValor2)
+                .addComponent(varDecValor2, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bloco05VarLayout.setVerticalGroup(
@@ -525,12 +498,15 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        layPanel.setBackground(new java.awt.Color(255, 255, 255));
+        layPanel.setBackground(new java.awt.Color(0, 255, 255));
         layPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        layPanel.setForeground(new java.awt.Color(0, 255, 255));
 
-        bloco00.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco00.setBackground(new java.awt.Color(0, 255, 255));
+        bloco00.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        bloco00.setForeground(new java.awt.Color(0, 255, 255));
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Início");
 
@@ -567,10 +543,11 @@ public class MainInterativo extends javax.swing.JFrame {
             .addGroup(layPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bloco00, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(436, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bloco11Oper.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco11Oper.setBackground(new java.awt.Color(0, 153, 153));
+        bloco11Oper.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco11Oper.setPreferredSize(new java.awt.Dimension(50, 50));
         bloco11Oper.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -583,7 +560,8 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("+");
 
@@ -593,7 +571,7 @@ public class MainInterativo extends javax.swing.JFrame {
             bloco11OperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bloco11OperLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bloco11OperLayout.setVerticalGroup(
@@ -604,73 +582,8 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bloco06Var.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        bloco06Var.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                bloco06VarMouseDragged(evt);
-            }
-        });
-        bloco06Var.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                bloco06VarMouseReleased(evt);
-            }
-        });
-
-        jLabel10.setText("Variável");
-
-        varDec2.setText("Nome");
-        varDec2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                varDec2AncestorMoved(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        varDec2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                varDec2ActionPerformed(evt);
-            }
-        });
-        varDec2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                varDec2KeyReleased(evt);
-            }
-        });
-
-        varDecValor3.setText("Valor");
-        varDecValor3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                varDecValor3KeyReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout bloco06VarLayout = new javax.swing.GroupLayout(bloco06Var);
-        bloco06Var.setLayout(bloco06VarLayout);
-        bloco06VarLayout.setHorizontalGroup(
-            bloco06VarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bloco06VarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(varDec2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(varDecValor3)
-                .addContainerGap())
-        );
-        bloco06VarLayout.setVerticalGroup(
-            bloco06VarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bloco06VarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bloco06VarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(varDec2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(varDecValor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        bloco09VarU.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco09VarU.setBackground(new java.awt.Color(0, 153, 153));
+        bloco09VarU.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco09VarU.setMaximumSize(new java.awt.Dimension(138, 42));
         bloco09VarU.setMinimumSize(new java.awt.Dimension(138, 42));
         bloco09VarU.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -684,54 +597,12 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        variaveis3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
-        variaveis3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                variaveis3MouseDragged(evt);
-            }
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                variaveis3MouseMoved(evt);
-            }
-        });
-        variaveis3.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                variaveis3FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                variaveis3FocusLost(evt);
-            }
-        });
-        variaveis3.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-                variaveis3PopupMenuCanceled(evt);
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis3PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis3PopupMenuWillBecomeVisible(evt);
-            }
-        });
-        variaveis3.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                variaveis3MouseWheelMoved(evt);
-            }
-        });
-        variaveis3.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoVar3.setBackground(new java.awt.Color(204, 255, 255));
+        botaoVar3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        botaoVar3.setForeground(new java.awt.Color(0, 0, 0));
+        botaoVar3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                variaveis3MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                variaveis3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                variaveis3MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                variaveis3MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                variaveis3MouseReleased(evt);
+                botaoVar3MouseClicked(evt);
             }
         });
 
@@ -739,24 +610,25 @@ public class MainInterativo extends javax.swing.JFrame {
         bloco09VarU.setLayout(bloco09VarULayout);
         bloco09VarULayout.setHorizontalGroup(
             bloco09VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
             .addGroup(bloco09VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(bloco09VarULayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(variaveis3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(9, Short.MAX_VALUE)))
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(29, Short.MAX_VALUE)))
         );
         bloco09VarULayout.setVerticalGroup(
             bloco09VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 38, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
             .addGroup(bloco09VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(bloco09VarULayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(variaveis3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco09VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar3, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
-        bloco07VarU.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco07VarU.setBackground(new java.awt.Color(0, 153, 153));
+        bloco07VarU.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco07VarU.setMaximumSize(new java.awt.Dimension(138, 42));
         bloco07VarU.setMinimumSize(new java.awt.Dimension(138, 42));
         bloco07VarU.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -770,49 +642,12 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        variaveis1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
-        variaveis1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                variaveis1MouseDragged(evt);
-            }
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                variaveis1MouseMoved(evt);
-            }
-        });
-        variaveis1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                variaveis1FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                variaveis1FocusLost(evt);
-            }
-        });
-        variaveis1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-                variaveis1PopupMenuCanceled(evt);
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis1PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis1PopupMenuWillBecomeVisible(evt);
-            }
-        });
-        variaveis1.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoVar1.setBackground(new java.awt.Color(204, 255, 255));
+        botaoVar1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        botaoVar1.setForeground(new java.awt.Color(0, 0, 0));
+        botaoVar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                variaveis1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                variaveis1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                variaveis1MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                variaveis1MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                variaveis1MouseReleased(evt);
+                botaoVar1MouseClicked(evt);
             }
         });
 
@@ -820,24 +655,25 @@ public class MainInterativo extends javax.swing.JFrame {
         bloco07VarU.setLayout(bloco07VarULayout);
         bloco07VarULayout.setHorizontalGroup(
             bloco07VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
             .addGroup(bloco07VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(bloco07VarULayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(variaveis1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(9, Short.MAX_VALUE)))
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(29, Short.MAX_VALUE)))
         );
         bloco07VarULayout.setVerticalGroup(
             bloco07VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 38, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
             .addGroup(bloco07VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(bloco07VarULayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(variaveis1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco07VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
-        bloco12Oper.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco12Oper.setBackground(new java.awt.Color(0, 153, 153));
+        bloco12Oper.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco12Oper.setPreferredSize(new java.awt.Dimension(50, 50));
         bloco12Oper.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -850,7 +686,8 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("=");
 
@@ -860,18 +697,19 @@ public class MainInterativo extends javax.swing.JFrame {
             bloco12OperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bloco12OperLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bloco12OperLayout.setVerticalGroup(
             bloco12OperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bloco12OperLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        bloco10VarU.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco10VarU.setBackground(new java.awt.Color(0, 153, 153));
+        bloco10VarU.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco10VarU.setMaximumSize(new java.awt.Dimension(138, 42));
         bloco10VarU.setMinimumSize(new java.awt.Dimension(138, 42));
         bloco10VarU.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -885,49 +723,12 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        variaveis4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teste"}));
-        variaveis4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                variaveis4MouseDragged(evt);
-            }
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                variaveis4MouseMoved(evt);
-            }
-        });
-        variaveis4.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                variaveis4FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                variaveis4FocusLost(evt);
-            }
-        });
-        variaveis4.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-                variaveis4PopupMenuCanceled(evt);
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis4PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                variaveis4PopupMenuWillBecomeVisible(evt);
-            }
-        });
-        variaveis4.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoVar4.setBackground(new java.awt.Color(204, 255, 255));
+        botaoVar4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        botaoVar4.setForeground(new java.awt.Color(0, 0, 0));
+        botaoVar4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                variaveis4MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                variaveis4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                variaveis4MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                variaveis4MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                variaveis4MouseReleased(evt);
+                botaoVar4MouseClicked(evt);
             }
         });
 
@@ -935,24 +736,25 @@ public class MainInterativo extends javax.swing.JFrame {
         bloco10VarU.setLayout(bloco10VarULayout);
         bloco10VarULayout.setHorizontalGroup(
             bloco10VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 134, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
             .addGroup(bloco10VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(bloco10VarULayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(variaveis4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(9, Short.MAX_VALUE)))
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(29, Short.MAX_VALUE)))
         );
         bloco10VarULayout.setVerticalGroup(
             bloco10VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 38, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
             .addGroup(bloco10VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(bloco10VarULayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(variaveis4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco10VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar4, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
-        bloco13Oper.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco13Oper.setBackground(new java.awt.Color(0, 153, 153));
+        bloco13Oper.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco13Oper.setPreferredSize(new java.awt.Dimension(50, 50));
         bloco13Oper.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -965,7 +767,8 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("-");
 
@@ -975,7 +778,7 @@ public class MainInterativo extends javax.swing.JFrame {
             bloco13OperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bloco13OperLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bloco13OperLayout.setVerticalGroup(
@@ -986,7 +789,8 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        bloco14Oper.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco14Oper.setBackground(new java.awt.Color(0, 153, 153));
+        bloco14Oper.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco14Oper.setPreferredSize(new java.awt.Dimension(50, 50));
         bloco14Oper.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -999,7 +803,8 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("*");
 
@@ -1009,7 +814,7 @@ public class MainInterativo extends javax.swing.JFrame {
             bloco14OperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bloco14OperLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bloco14OperLayout.setVerticalGroup(
@@ -1020,7 +825,8 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bloco15Oper.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco15Oper.setBackground(new java.awt.Color(0, 153, 153));
+        bloco15Oper.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco15Oper.setPreferredSize(new java.awt.Dimension(50, 50));
         bloco15Oper.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -1033,7 +839,8 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("/");
 
@@ -1043,18 +850,19 @@ public class MainInterativo extends javax.swing.JFrame {
             bloco15OperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bloco15OperLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bloco15OperLayout.setVerticalGroup(
             bloco15OperLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco15OperLayout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel14)
+                .addContainerGap()
+                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        bloco16IF.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco16IF.setBackground(new java.awt.Color(0, 153, 153));
+        bloco16IF.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco16IF.setAlignmentY(0.0F);
         bloco16IF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bloco16IF.setMaximumSize(new java.awt.Dimension(45, 34));
@@ -1070,9 +878,13 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Se");
 
+        ifEntrada.setBackground(new java.awt.Color(204, 255, 255));
+        ifEntrada.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         ifEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ifEntradaActionPerformed(evt);
@@ -1092,7 +904,7 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ifEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ifEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bloco16IFLayout.setVerticalGroup(
@@ -1105,7 +917,8 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bloco17Else.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bloco17Else.setBackground(new java.awt.Color(0, 153, 153));
+        bloco17Else.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco17Else.setAlignmentY(0.0F);
         bloco17Else.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bloco17Else.setMaximumSize(new java.awt.Dimension(45, 34));
@@ -1121,9 +934,13 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Se Não");
 
+        ifEntrada1.setBackground(new java.awt.Color(204, 255, 255));
+        ifEntrada1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         ifEntrada1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ifEntrada1ActionPerformed(evt);
@@ -1149,18 +966,17 @@ public class MainInterativo extends javax.swing.JFrame {
         bloco17ElseLayout.setVerticalGroup(
             bloco17ElseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bloco17ElseLayout.createSequentialGroup()
-                .addGroup(bloco17ElseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bloco17ElseLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel12))
-                    .addGroup(bloco17ElseLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(ifEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4)
+                .addComponent(ifEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(bloco17ElseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        bloco18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        bloco18.setNextFocusableComponent(jLabel1);
+        bloco18.setBackground(new java.awt.Color(0, 153, 153));
+        bloco18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco18.setPreferredSize(new java.awt.Dimension(77, 42));
         bloco18.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -1173,24 +989,27 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Fim Se");
 
         javax.swing.GroupLayout bloco18Layout = new javax.swing.GroupLayout(bloco18);
         bloco18.setLayout(bloco18Layout);
         bloco18Layout.setHorizontalGroup(
             bloco18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bloco18Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addContainerGap())
         );
         bloco18Layout.setVerticalGroup(
             bloco18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        bloco19.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        bloco19.setNextFocusableComponent(jLabel1);
+        bloco19.setBackground(new java.awt.Color(0, 153, 153));
+        bloco19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
         bloco19.setPreferredSize(new java.awt.Dimension(77, 42));
         bloco19.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -1203,20 +1022,413 @@ public class MainInterativo extends javax.swing.JFrame {
             }
         });
 
+        jLabel16.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Fim Se");
 
         javax.swing.GroupLayout bloco19Layout = new javax.swing.GroupLayout(bloco19);
         bloco19.setLayout(bloco19Layout);
         bloco19Layout.setHorizontalGroup(
             bloco19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bloco19Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addContainerGap())
         );
         bloco19Layout.setVerticalGroup(
             bloco19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        bloco06Var.setBackground(new java.awt.Color(0, 153, 153));
+        bloco06Var.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco06Var.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bloco06VarMouseDragged(evt);
+            }
+        });
+        bloco06Var.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bloco06VarMouseReleased(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Variável");
+
+        varDec2.setBackground(new java.awt.Color(204, 255, 255));
+        varDec2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        varDec2.setForeground(new java.awt.Color(51, 51, 51));
+        varDec2.setText("Nome");
+        varDec2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                varDec2AncestorMoved(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        varDec2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varDec2ActionPerformed(evt);
+            }
+        });
+        varDec2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                varDec2KeyReleased(evt);
+            }
+        });
+
+        varDecValor3.setBackground(new java.awt.Color(204, 255, 255));
+        varDecValor3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        varDecValor3.setForeground(new java.awt.Color(51, 51, 51));
+        varDecValor3.setText("Valor");
+        varDecValor3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                varDecValor3KeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bloco06VarLayout = new javax.swing.GroupLayout(bloco06Var);
+        bloco06Var.setLayout(bloco06VarLayout);
+        bloco06VarLayout.setHorizontalGroup(
+            bloco06VarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bloco06VarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(varDec2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(varDecValor3, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        bloco06VarLayout.setVerticalGroup(
+            bloco06VarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bloco06VarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bloco06VarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(varDec2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(varDecValor3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        bloco20VarU.setBackground(new java.awt.Color(0, 153, 153));
+        bloco20VarU.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco20VarU.setMaximumSize(new java.awt.Dimension(138, 42));
+        bloco20VarU.setMinimumSize(new java.awt.Dimension(138, 42));
+        bloco20VarU.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bloco20VarUMouseDragged(evt);
+            }
+        });
+        bloco20VarU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bloco20VarUMouseReleased(evt);
+            }
+        });
+
+        botaoVar5.setBackground(new java.awt.Color(204, 255, 255));
+        botaoVar5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        botaoVar5.setForeground(new java.awt.Color(0, 0, 0));
+        botaoVar5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoVar5MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bloco20VarULayout = new javax.swing.GroupLayout(bloco20VarU);
+        bloco20VarU.setLayout(bloco20VarULayout);
+        bloco20VarULayout.setHorizontalGroup(
+            bloco20VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 136, Short.MAX_VALUE)
+            .addGroup(bloco20VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(bloco20VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(29, Short.MAX_VALUE)))
+        );
+        bloco20VarULayout.setVerticalGroup(
+            bloco20VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(bloco20VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco20VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar5, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        bloco21VarU.setBackground(new java.awt.Color(0, 153, 153));
+        bloco21VarU.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco21VarU.setMaximumSize(new java.awt.Dimension(138, 42));
+        bloco21VarU.setMinimumSize(new java.awt.Dimension(138, 42));
+        bloco21VarU.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bloco21VarUMouseDragged(evt);
+            }
+        });
+        bloco21VarU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bloco21VarUMouseReleased(evt);
+            }
+        });
+
+        botaoVar6.setBackground(new java.awt.Color(204, 255, 255));
+        botaoVar6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        botaoVar6.setForeground(new java.awt.Color(0, 0, 0));
+        botaoVar6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoVar6MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bloco21VarULayout = new javax.swing.GroupLayout(bloco21VarU);
+        bloco21VarU.setLayout(bloco21VarULayout);
+        bloco21VarULayout.setHorizontalGroup(
+            bloco21VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 136, Short.MAX_VALUE)
+            .addGroup(bloco21VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(bloco21VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(29, Short.MAX_VALUE)))
+        );
+        bloco21VarULayout.setVerticalGroup(
+            bloco21VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(bloco21VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco21VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar6, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        bloco22VarU.setBackground(new java.awt.Color(0, 153, 153));
+        bloco22VarU.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco22VarU.setMaximumSize(new java.awt.Dimension(138, 42));
+        bloco22VarU.setMinimumSize(new java.awt.Dimension(138, 42));
+        bloco22VarU.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bloco22VarUMouseDragged(evt);
+            }
+        });
+        bloco22VarU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bloco22VarUMouseReleased(evt);
+            }
+        });
+
+        botaoVar7.setBackground(new java.awt.Color(204, 255, 255));
+        botaoVar7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        botaoVar7.setForeground(new java.awt.Color(0, 0, 0));
+        botaoVar7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoVar7MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bloco22VarULayout = new javax.swing.GroupLayout(bloco22VarU);
+        bloco22VarU.setLayout(bloco22VarULayout);
+        bloco22VarULayout.setHorizontalGroup(
+            bloco22VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 136, Short.MAX_VALUE)
+            .addGroup(bloco22VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(bloco22VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(29, Short.MAX_VALUE)))
+        );
+        bloco22VarULayout.setVerticalGroup(
+            bloco22VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(bloco22VarULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco22VarULayout.createSequentialGroup()
+                    .addGap(7, 7, 7)
+                    .addComponent(botaoVar7, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        bloco23.setBackground(new java.awt.Color(0, 153, 153));
+        bloco23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco23.setPreferredSize(new java.awt.Dimension(50, 50));
+        bloco23.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bloco23MouseDragged(evt);
+            }
+        });
+        bloco23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bloco23MouseReleased(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("=");
+
+        javax.swing.GroupLayout bloco23Layout = new javax.swing.GroupLayout(bloco23);
+        bloco23.setLayout(bloco23Layout);
+        bloco23Layout.setHorizontalGroup(
+            bloco23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bloco23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        bloco23Layout.setVerticalGroup(
+            bloco23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bloco23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        bloco24.setBackground(new java.awt.Color(0, 153, 153));
+        bloco24.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco24.setPreferredSize(new java.awt.Dimension(50, 50));
+        bloco24.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bloco24MouseDragged(evt);
+            }
+        });
+        bloco24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bloco24MouseReleased(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("+");
+
+        javax.swing.GroupLayout bloco24Layout = new javax.swing.GroupLayout(bloco24);
+        bloco24.setLayout(bloco24Layout);
+        bloco24Layout.setHorizontalGroup(
+            bloco24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bloco24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        bloco24Layout.setVerticalGroup(
+            bloco24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bloco24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        bloco26.setBackground(new java.awt.Color(0, 153, 153));
+        bloco26.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco26.setPreferredSize(new java.awt.Dimension(50, 50));
+        bloco26.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bloco26MouseDragged(evt);
+            }
+        });
+        bloco26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bloco26MouseReleased(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("*");
+
+        javax.swing.GroupLayout bloco26Layout = new javax.swing.GroupLayout(bloco26);
+        bloco26.setLayout(bloco26Layout);
+        bloco26Layout.setHorizontalGroup(
+            bloco26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bloco26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        bloco26Layout.setVerticalGroup(
+            bloco26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        bloco25.setBackground(new java.awt.Color(0, 153, 153));
+        bloco25.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco25.setPreferredSize(new java.awt.Dimension(50, 50));
+        bloco25.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bloco25MouseDragged(evt);
+            }
+        });
+        bloco25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bloco25MouseReleased(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("-");
+
+        javax.swing.GroupLayout bloco25Layout = new javax.swing.GroupLayout(bloco25);
+        bloco25.setLayout(bloco25Layout);
+        bloco25Layout.setHorizontalGroup(
+            bloco25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bloco25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        bloco25Layout.setVerticalGroup(
+            bloco25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco25Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        bloco27.setBackground(new java.awt.Color(0, 153, 153));
+        bloco27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        bloco27.setPreferredSize(new java.awt.Dimension(50, 50));
+        bloco27.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                bloco27MouseDragged(evt);
+            }
+        });
+        bloco27.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bloco27MouseReleased(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("/");
+
+        javax.swing.GroupLayout bloco27Layout = new javax.swing.GroupLayout(bloco27);
+        bloco27.setLayout(bloco27Layout);
+        bloco27Layout.setHorizontalGroup(
+            bloco27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bloco27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        bloco27Layout.setVerticalGroup(
+            bloco27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bloco27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
@@ -1228,97 +1440,140 @@ public class MainInterativo extends javax.swing.JFrame {
                 .addComponent(layPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bloco16IF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(bloco02, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bloco01, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bloco03, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(bloco11Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bloco13Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(bloco14Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bloco12Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(bloco15Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bloco18, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 3, Short.MAX_VALUE)))
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bloco13Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco15Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(bloco05Var, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bloco04Var, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bloco06Var, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(bloco10VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bloco09VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bloco08VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bloco07VarU, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(85, 85, 85))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(bloco11Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bloco12Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bloco09VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(bloco14Oper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bloco23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bloco10VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(bloco19, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(bloco16IF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bloco07VarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(bloco06Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bloco02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(bloco05Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bloco03, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(bloco04Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bloco01, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bloco08VarU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(bloco25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bloco27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bloco19, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(bloco24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bloco26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bloco18, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bloco20VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco21VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco22VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(separador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bloco04Var, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bloco01, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(bloco05Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(bloco06Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(bloco02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bloco06Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bloco03, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(4, 4, 4)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bloco07VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(bloco12Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                        .addComponent(bloco11Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bloco05Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco03, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bloco04Var, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco01, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bloco16IF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco07VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bloco08VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(bloco12Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                                .addComponent(bloco11Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                            .addComponent(bloco09VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco15Oper, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(bloco13Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, Short.MAX_VALUE)
+                                .addComponent(bloco14Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                            .addComponent(bloco10VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco23, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bloco18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloco24, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                            .addComponent(bloco26, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bloco20VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bloco08VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(bloco13Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, Short.MAX_VALUE)
-                        .addComponent(bloco14Oper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
+                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(bloco19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bloco21VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bloco25, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bloco27, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bloco15Oper, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bloco09VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bloco16IF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bloco10VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bloco17Else, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bloco18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bloco19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
-            .addComponent(layPanel)
+                .addComponent(bloco22VarU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addComponent(layPanel)
+                .addContainerGap())
         );
 
         bloco03.getAccessibleContext().setAccessibleParent(panelPrincipal);
 
         getContentPane().add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1139, 517));
 
+        menuBar.setForeground(new java.awt.Color(153, 255, 255));
         menuBar.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
 
         menu.setText("Inicio");
@@ -1332,6 +1587,7 @@ public class MainInterativo extends javax.swing.JFrame {
         });
         menuBar.add(visuCodigo);
 
+        jMenu1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu1.setText("Executar Código");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1369,8 +1625,16 @@ public class MainInterativo extends javax.swing.JFrame {
     Bloco blocoP17 = new Bloco();
     Bloco blocoP18 = new Bloco();
     Bloco blocoP19 = new Bloco();
+    Bloco blocoP20 = new Bloco();
+    Bloco blocoP21 = new Bloco();
+    Bloco blocoP22 = new Bloco();
+    Bloco blocoP23 = new Bloco();
+    Bloco blocoP24 = new Bloco();
+    Bloco blocoP25 = new Bloco();
+    Bloco blocoP26 = new Bloco();
+    Bloco blocoP27 = new Bloco();
 
-    public ArrayList<javax.swing.JPanel> blocosS = new ArrayList<javax.swing.JPanel>() {//TESTEEE
+    public ArrayList<javax.swing.JPanel> blocosS = new ArrayList<javax.swing.JPanel>() {
         {
             add(bloco00);
             add(bloco01);
@@ -1392,6 +1656,14 @@ public class MainInterativo extends javax.swing.JFrame {
             add(bloco17Else);
             add(bloco18);
             add(bloco19);
+            add(bloco20VarU);
+            add(bloco21VarU);
+            add(bloco22VarU);
+            add(bloco23);
+            add(bloco24);
+            add(bloco25);
+            add(bloco26);
+            add(bloco27);
         }
     };
 
@@ -1416,6 +1688,14 @@ public class MainInterativo extends javax.swing.JFrame {
         blocosS.set(17, bloco17Else);
         blocosS.set(18, bloco18);
         blocosS.set(19, bloco19);
+        blocosS.set(20, bloco20VarU);
+        blocosS.set(21, bloco21VarU);
+        blocosS.set(22, bloco22VarU);
+        blocosS.set(23, bloco23);
+        blocosS.set(24, bloco24);
+        blocosS.set(25, bloco25);
+        blocosS.set(26, bloco26);
+        blocosS.set(27, bloco27);
     }
     public ArrayList<Bloco> blocos = new ArrayList<Bloco>() {
         {
@@ -1439,6 +1719,14 @@ public class MainInterativo extends javax.swing.JFrame {
             add(blocoP17);
             add(blocoP18);
             add(blocoP19);
+            add(blocoP20);
+            add(blocoP21);
+            add(blocoP22);
+            add(blocoP23);
+            add(blocoP24);
+            add(blocoP25);
+            add(blocoP26);
+            add(blocoP27);
         }
     };
 
@@ -1507,14 +1795,16 @@ public class MainInterativo extends javax.swing.JFrame {
                     && bl.id != blAlvo.id && achou == false) {
                 if (bl.ret.intersects(blAlvo.retEncaixeLateral)) {
                     if (!estaEncaixadoLateral(blAlvo)) {
+                        achou = true;
                         encaixarBloco(blAlvo, bl, true);
                     }
                 } else {
                     if (!estaEncaixado(blAlvo)) {
+                        achou = true;
                         encaixarBloco(blAlvo, bl, false);
                     }
                 }
-                achou = true;
+                
                 System.out.println(bl.id + " ENCAIXOU com " + blAlvo.id);
             }
         }
@@ -1543,137 +1833,20 @@ public class MainInterativo extends javax.swing.JFrame {
                 blocos.set(blAlvo.id, blAlvo);
             }
         }
-        int x = evt.getLocationOnScreen().x - 62 - panelPrincipal.getLocationOnScreen().x;
-        int y = evt.getLocationOnScreen().y - 21 - panelPrincipal.getLocationOnScreen().y;
+        int meioBlocox = bl.ret.width - (bl.ret.width/2); 
+        int meioBlocoy = bl.ret.height - (bl.ret.height/2); 
+        int x = evt.getLocationOnScreen().x - meioBlocox - panelPrincipal.getLocationOnScreen().x;
+        int y = evt.getLocationOnScreen().y - meioBlocoy - panelPrincipal.getLocationOnScreen().y;
 
         blocoO.setLocation(x, y);
         blocos.set(bl.id, bl);
 
-    }
-    // <editor-fold defaultstate="collapsed" desc="Metodos Mouses 01 - 05 e 11"> 
-    private void bloco01MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco01MouseDragged
-      moveBloco(evt, blocoP1); 
-    }//GEN-LAST:event_bloco01MouseDragged
-
-    private void bloco02MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco02MouseDragged
-        moveBloco(evt, blocoP2);
-    }//GEN-LAST:event_bloco02MouseDragged
-
-    private void bloco03MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco03MouseDragged
-
-        moveBloco(evt, blocoP3);
-
-    }//GEN-LAST:event_bloco03MouseDragged
-
-    private void bloco01MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco01MouseReleased
-        encaixa(blocoP1);
-    }//GEN-LAST:event_bloco01MouseReleased
-
-    private void bloco02MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco02MouseReleased
-        encaixa(blocoP2);
-    }//GEN-LAST:event_bloco02MouseReleased
-
-    private void bloco03MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco03MouseReleased
-        encaixa(blocoP3);
-    }//GEN-LAST:event_bloco03MouseReleased
-
-    private void bloco04VarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco04VarMouseReleased
-        encaixa(blocoP4);
-    }//GEN-LAST:event_bloco04VarMouseReleased
-
-    private void bloco04VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco04VarMouseDragged
-        moveBloco(evt, blocoP4);
-
-    }//GEN-LAST:event_bloco04VarMouseDragged
-
-    private void bloco08VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco08VarUMouseDragged
-        moveBloco(evt, blocoP8);
-    }//GEN-LAST:event_bloco08VarUMouseDragged
-
-    private void bloco08VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco08VarUMouseReleased
-        encaixa(blocoP8);
-    }//GEN-LAST:event_bloco08VarUMouseReleased
-
-    private void bloco05VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco05VarMouseDragged
-        moveBloco(evt, blocoP5);
-    }//GEN-LAST:event_bloco05VarMouseDragged
-
-    private void bloco05VarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco05VarMouseReleased
-        encaixa(blocoP5);
-    }//GEN-LAST:event_bloco05VarMouseReleased
-
-    private void bloco11OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco11OperMouseDragged
-        moveBloco(evt, blocoP11);
-    }//GEN-LAST:event_bloco11OperMouseDragged
-
-    private void bloco11OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco11OperMouseReleased
-        encaixa(blocoP11);
-    }//GEN-LAST:event_bloco11OperMouseReleased
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="Var Decs e Metodos Mouses"> 
-    private void varDecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varDecActionPerformed
-        addVariavel(evt.getActionCommand(), 0);
-        blocoP4.nome = evt.getActionCommand();
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_varDecActionPerformed
-
-    private void varDec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varDec1ActionPerformed
-        addVariavel(evt.getActionCommand(), 1);
-        blocoP5.nome = evt.getActionCommand();
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_varDec1ActionPerformed
-
-    private void varDec2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varDec2ActionPerformed
-        addVariavel(evt.getActionCommand(), 2);
-        blocoP6.nome = evt.getActionCommand();
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_varDec2ActionPerformed
-
-    private void bloco06VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco06VarMouseDragged
-        moveBloco(evt, blocoP6);
-    }//GEN-LAST:event_bloco06VarMouseDragged
-
-    private void bloco06VarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco06VarMouseReleased
-        encaixa(blocoP6);
-    }//GEN-LAST:event_bloco06VarMouseReleased
-
-    private void bloco09VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco09VarUMouseDragged
-        moveBloco(evt, blocoP9);
-    }//GEN-LAST:event_bloco09VarUMouseDragged
-
-    private void bloco09VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco09VarUMouseReleased
-        encaixa(blocoP9);
-    }//GEN-LAST:event_bloco09VarUMouseReleased
-
-    private void bloco07VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco07VarUMouseDragged
-        moveBloco(evt, blocoP7);
-    }//GEN-LAST:event_bloco07VarUMouseDragged
-
-    private void bloco07VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco07VarUMouseReleased
-        encaixa(blocoP7);
-    }//GEN-LAST:event_bloco07VarUMouseReleased
-
-    private void bloco12OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco12OperMouseDragged
-        moveBloco(evt, blocoP12);
-    }//GEN-LAST:event_bloco12OperMouseDragged
-
-    private void bloco12OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco12OperMouseReleased
-        encaixa(blocoP12);
-    }//GEN-LAST:event_bloco12OperMouseReleased
-
-    private void bloco10VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco10VarUMouseDragged
-        moveBloco(evt, blocoP10);
-    }//GEN-LAST:event_bloco10VarUMouseDragged
-
-    private void bloco10VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco10VarUMouseReleased
-        encaixa(blocoP10);
-    }//GEN-LAST:event_bloco10VarUMouseReleased
-    // </editor-fold>
+    }    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Metodos Mouses 13-"> 
     
     private void visuCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visuCodigoMouseClicked
         System.out.println("Visualizando o Código");
-        jCodigo.setBlocos(blocos, nomeList);//Chama o metodo para criar o código
+        jCodigo.setBlocosJava(blocos, nomeList);//Chama o metodo para criar o código
         JFrame frame = new JFrame("Visualização do Código");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
         frame.getContentPane().add(jCodigo); // Adiciona o painel da nova janela ao JFrame
@@ -1682,189 +1855,20 @@ public class MainInterativo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_visuCodigoMouseClicked
 
-    private void bloco13OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco13OperMouseDragged
-        moveBloco(evt, blocoP13);
-    }//GEN-LAST:event_bloco13OperMouseDragged
-
-    private void bloco13OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco13OperMouseReleased
-        encaixa(blocoP13);
-    }//GEN-LAST:event_bloco13OperMouseReleased
-
-    private void bloco14OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco14OperMouseDragged
-        moveBloco(evt, blocoP14);
-    }//GEN-LAST:event_bloco14OperMouseDragged
-
-    private void bloco14OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco14OperMouseReleased
-        encaixa(blocoP14);
-    }//GEN-LAST:event_bloco14OperMouseReleased
-
-    private void bloco15OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco15OperMouseDragged
-        moveBloco(evt, blocoP15);
-    }//GEN-LAST:event_bloco15OperMouseDragged
-
-    private void bloco15OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco15OperMouseReleased
-        encaixa(blocoP15);
-    }//GEN-LAST:event_bloco15OperMouseReleased
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         repositionPanels(panelPrincipal);
         atualizaABlocos();
         System.out.println("Winmdsow");
     }//GEN-LAST:event_formWindowActivated
-
-    private void ifEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifEntradaActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_ifEntradaActionPerformed
-
-    private void bloco16IFMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco16IFMouseDragged
-        moveBloco(evt, blocoP16);
-    }//GEN-LAST:event_bloco16IFMouseDragged
-
-    private void bloco16IFMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco16IFMouseReleased
-        encaixa(blocoP16);
-    }//GEN-LAST:event_bloco16IFMouseReleased
-
-    private void ifEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifEntrada1ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_ifEntrada1ActionPerformed
-
-    private void bloco17ElseMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco17ElseMouseDragged
-        moveBloco(evt, blocoP17);
-    }//GEN-LAST:event_bloco17ElseMouseDragged
-
-    private void bloco17ElseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco17ElseMouseReleased
-        encaixa(blocoP17);
-    }//GEN-LAST:event_bloco17ElseMouseReleased
 // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Metodos variaveis concerta Panels"> 
-    
-    private void variaveis1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis1MouseDragged
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1MouseDragged
-
-    private void variaveis1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis1MouseMoved
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1MouseMoved
-
-    private void variaveis1PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis1PopupMenuCanceled
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1PopupMenuCanceled
-
-    private void variaveis1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis1PopupMenuWillBecomeInvisible
-        repositionPanels(panelPrincipal);
-        blocoP7.dados = variaveis1.getSelectedItem().toString();
-    }//GEN-LAST:event_variaveis1PopupMenuWillBecomeInvisible
-
-    private void variaveis1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis1PopupMenuWillBecomeVisible
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1PopupMenuWillBecomeVisible
-
-    private void variaveis1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis1MouseClicked
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1MouseClicked
-
-    private void variaveis1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis1MousePressed
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1MousePressed
-
-    private void variaveis2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis2MouseDragged
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2MouseDragged
-
-    private void variaveis2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis2MouseMoved
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2MouseMoved
-
-    private void variaveis2PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis2PopupMenuCanceled
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2PopupMenuCanceled
-
-    private void variaveis2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis2PopupMenuWillBecomeInvisible
-        repositionPanels(panelPrincipal);
-        blocoP8.dados = variaveis2.getSelectedItem().toString();
-    }//GEN-LAST:event_variaveis2PopupMenuWillBecomeInvisible
-
-    private void variaveis2PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis2PopupMenuWillBecomeVisible
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2PopupMenuWillBecomeVisible
-
-    private void variaveis2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis2MouseClicked
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2MouseClicked
-
-    private void variaveis2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis2MousePressed
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2MousePressed
-
-    private void variaveis3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis3MouseDragged
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3MouseDragged
-
-    private void variaveis3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis3MouseMoved
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3MouseMoved
-
-    private void variaveis3PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis3PopupMenuCanceled
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3PopupMenuCanceled
-
-    private void variaveis3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis3PopupMenuWillBecomeInvisible
-        repositionPanels(panelPrincipal);
-        if (variaveis0.getSelectedItem() != null) {
-            blocoP9.dados = variaveis3.getSelectedItem().toString();
-        }
-    }//GEN-LAST:event_variaveis3PopupMenuWillBecomeInvisible
-
-    private void variaveis3PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis3PopupMenuWillBecomeVisible
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3PopupMenuWillBecomeVisible
-
-    private void variaveis3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis3MouseClicked
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3MouseClicked
-
-    private void variaveis3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis3MousePressed
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3MousePressed
-
-    private void variaveis4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis4MouseDragged
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4MouseDragged
-    
-    private void variaveis4MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis4MouseMoved
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4MouseMoved
-
-    private void variaveis4PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis4PopupMenuCanceled
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4PopupMenuCanceled
-
-    private void variaveis4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis4PopupMenuWillBecomeInvisible
-        repositionPanels(panelPrincipal);
-        if (variaveis0.getSelectedItem() != null) {
-            blocoP10.dados = variaveis4.getSelectedItem().toString();
-        }
-    }//GEN-LAST:event_variaveis4PopupMenuWillBecomeInvisible
-
-    private void variaveis4PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis4PopupMenuWillBecomeVisible
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4PopupMenuWillBecomeVisible
-
-    private void variaveis4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis4MouseClicked
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4MouseClicked
-
-    private void variaveis4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis4MousePressed
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4MousePressed
-// </editor-fold>
+        // </editor-fold>
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
 
         System.out.println("Executando Código");
         Interpreter interpreter = new Interpreter();
         String code = jCodigo.setCodigoExec(blocos, nomeList);
+        String erro = "";
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PrintStream ps = new PrintStream(baos);
@@ -1875,131 +1879,125 @@ public class MainInterativo extends javax.swing.JFrame {
             try {
                 interpreter.eval(code);
             } catch (EvalError e) {
+                erro = e.getLocalizedMessage();
                 System.err.println("Erro ao executar o código");
                 System.err.println("Mensagem: " + e.getLocalizedMessage() + "Fim");
                 //Fazer uma janela de erro para avisar que o código está errado.
             }
+            
+            
             // Restaurar a saída do console
             System.setOut(old);
 
             // Capturar a saída
             String resultadoConsole = baos.toString();
+            
+            if(erro != ""){
+                jCodigo.setErroCodigo(erro,blocos,nomeList);
+                JFrame frameVar = new JFrame("Visualização do Código com Erro");
+                frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+                frameVar.getContentPane().add(jCodigo); // Adiciona o painel da nova janela ao JFrame
+                frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+                frameVar.setVisible(true);
+            }else{
+                jResult.setResult(resultadoConsole);
+                frameResult.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+                frameResult.getContentPane().add(jResult); // Adiciona o painel da nova janela ao JFrame
+                frameResult.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+                frameResult.setVisible(true);
+            }
+            
+            
+            
+            
             System.out.println("Saída do console: " + resultadoConsole);
+            
+            
+            
         } catch (Exception e) {
             System.out.println("Erro");
             e.printStackTrace();
         }
 
         /*
-        jCodigo.setBlocos(blocos, nomeList);//Chama o metodo para criar o código
-        JFrame frame = new JFrame("Visualização do Código");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
-        frame.getContentPane().add(jCodigo); // Adiciona o painel da nova janela ao JFrame
-        frame.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
-        frame.setVisible(true);*/
+        jCodigo.setBlocosJava(blocos, nomeList);//Chama o metodo para criar o código
+        JFrame frameVar = new JFrame("Visualização do Código");
+        frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+        frameVar.getContentPane().add(jCodigo); // Adiciona o painel da nova janela ao JFrame
+        frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+        frameVar.setVisible(true);*/
 
     }//GEN-LAST:event_jMenu1MouseClicked
     // <editor-fold defaultstate="collapsed" desc="Metodos variaveis concerta Panels 2/VarDecsValor e ReleseKey"> 
     
-    private void variaveis1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis1FocusGained
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1FocusGained
-
-    private void variaveis1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis1FocusLost
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1FocusLost
-
-    private void variaveis1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis1MouseEntered
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1MouseEntered
-
-    private void variaveis1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis1MouseExited
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1MouseExited
-
-    private void variaveis1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis1MouseReleased
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis1MouseReleased
-
-    private void variaveis2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis2MouseEntered
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2MouseEntered
-
-    private void variaveis2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis2MouseExited
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2MouseExited
-
-    private void variaveis2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis2MouseReleased
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2MouseReleased
-
-    private void variaveis2MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_variaveis2MouseWheelMoved
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2MouseWheelMoved
-
-    private void variaveis2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis2FocusLost
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2FocusLost
-
-    private void variaveis2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis2FocusGained
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis2FocusGained
-
-    private void variaveis3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis3FocusLost
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3FocusLost
-
-    private void variaveis3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis3FocusGained
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3FocusGained
-
-    private void variaveis3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis3MouseEntered
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3MouseEntered
-
-    private void variaveis3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis3MouseExited
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3MouseExited
-
-    private void variaveis3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis3MouseReleased
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3MouseReleased
-
-    private void variaveis3MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_variaveis3MouseWheelMoved
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis3MouseWheelMoved
-
-    private void variaveis4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis4FocusGained
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4FocusGained
-
-    private void variaveis4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis4FocusLost
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4FocusLost
-
-    private void variaveis4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis4MouseEntered
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4MouseEntered
-
-    private void variaveis4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis4MouseExited
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4MouseExited
-
-    private void variaveis4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis4MouseReleased
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis4MouseReleased
-
-    private void varDecAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_varDecAncestorMoved
-        if (!movendo) {
-            repositionPanels(panelPrincipal);
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        
+        String text = jVars.valEscolhido;
+        int idBotao = jVars.idValor;
+        switch (idBotao) {
+            case 0:
+                botaoVar0.setText(text);
+                blocoP1.dados = text;
+                break;
+            case 1:
+                botaoVar1.setText(text);
+                blocoP7.dados = text;
+                break;
+            case 2:
+                botaoVar2.setText(text);
+                blocoP8.dados = text;
+                break;
+            case 3:
+                botaoVar3.setText(text);
+                blocoP9.dados = text;
+                break;
+            case 4:
+                botaoVar4.setText(text);
+                blocoP10.dados = text;
+                break;
+            case 5:
+                botaoVar5.setText(text);
+                blocoP20.dados = text;
+                break;
+            case 6:
+                botaoVar6.setText(text);
+                blocoP21.dados = text;
+                break;
+            case 7:
+                botaoVar7.setText(text);
+                blocoP22.dados = text;
+                break;
+            default:
+                System.out.println("Erro add Botao");
         }
-    }//GEN-LAST:event_varDecAncestorMoved
+        
+        repositionPanels(panelPrincipal);
+    }//GEN-LAST:event_formWindowGainedFocus
 
-    private void varDec1AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_varDec1AncestorMoved
-        if (!movendo) {
-            repositionPanels(panelPrincipal);
-        }
-    }//GEN-LAST:event_varDec1AncestorMoved
+    private void bloco06VarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco06VarMouseReleased
+        encaixa(blocoP6);
+    }//GEN-LAST:event_bloco06VarMouseReleased
+
+    private void bloco06VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco06VarMouseDragged
+        moveBloco(evt, blocoP6);
+    }//GEN-LAST:event_bloco06VarMouseDragged
+
+    private void varDecValor3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDecValor3KeyReleased
+        nomeList[2][1] = varDecValor3.getText();
+        blocoP6.dados = varDecValor3.getText();
+    }//GEN-LAST:event_varDecValor3KeyReleased
+
+    private void varDec2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDec2KeyReleased
+        addVariavel(varDec2.getText(), 2);
+        blocoP6.nome = varDec2.getText();
+        repositionPanels(panelPrincipal);
+    }//GEN-LAST:event_varDec2KeyReleased
+
+    private void varDec2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varDec2ActionPerformed
+        addVariavel(evt.getActionCommand(), 2);
+        blocoP6.nome = evt.getActionCommand();
+        repositionPanels(panelPrincipal);
+    }//GEN-LAST:event_varDec2ActionPerformed
 
     private void varDec2AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_varDec2AncestorMoved
         if (!movendo) {
@@ -2007,20 +2005,201 @@ public class MainInterativo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_varDec2AncestorMoved
 
-    private void varDecValor1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDecValor1KeyReleased
-        nomeList[0][1] = varDecValor1.getText();
-        blocoP4.dados = varDecValor1.getText();
-    }//GEN-LAST:event_varDecValor1KeyReleased
+    private void bloco19MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco19MouseReleased
+        encaixa(blocoP19);
+    }//GEN-LAST:event_bloco19MouseReleased
+
+    private void bloco19MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco19MouseDragged
+        moveBloco(evt, blocoP19);
+    }//GEN-LAST:event_bloco19MouseDragged
+
+    private void bloco18MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco18MouseReleased
+        encaixa(blocoP18);
+    }//GEN-LAST:event_bloco18MouseReleased
+
+    private void bloco18MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco18MouseDragged
+        moveBloco(evt, blocoP18);
+    }//GEN-LAST:event_bloco18MouseDragged
+
+    private void bloco17ElseMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco17ElseMouseReleased
+        encaixa(blocoP17);
+    }//GEN-LAST:event_bloco17ElseMouseReleased
+
+    private void bloco17ElseMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco17ElseMouseDragged
+        moveBloco(evt, blocoP17);
+    }//GEN-LAST:event_bloco17ElseMouseDragged
+
+    private void ifEntrada1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ifEntrada1KeyReleased
+        blocoP17.dados = ifEntrada1.getText();
+    }//GEN-LAST:event_ifEntrada1KeyReleased
+
+    private void ifEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifEntrada1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ifEntrada1ActionPerformed
+
+    private void bloco16IFMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco16IFMouseReleased
+        encaixa(blocoP16);
+    }//GEN-LAST:event_bloco16IFMouseReleased
+
+    private void bloco16IFMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco16IFMouseDragged
+        moveBloco(evt, blocoP16);
+    }//GEN-LAST:event_bloco16IFMouseDragged
+
+    private void ifEntradaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ifEntradaKeyReleased
+        blocoP16.dados = ifEntrada.getText();
+    }//GEN-LAST:event_ifEntradaKeyReleased
+
+    private void ifEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ifEntradaActionPerformed
+
+    private void bloco15OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco15OperMouseReleased
+        encaixa(blocoP15);
+    }//GEN-LAST:event_bloco15OperMouseReleased
+
+    private void bloco15OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco15OperMouseDragged
+        moveBloco(evt, blocoP15);
+    }//GEN-LAST:event_bloco15OperMouseDragged
+
+    private void bloco14OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco14OperMouseReleased
+        encaixa(blocoP14);
+    }//GEN-LAST:event_bloco14OperMouseReleased
+
+    private void bloco14OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco14OperMouseDragged
+        moveBloco(evt, blocoP14);
+    }//GEN-LAST:event_bloco14OperMouseDragged
+
+    private void bloco13OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco13OperMouseReleased
+        encaixa(blocoP13);
+    }//GEN-LAST:event_bloco13OperMouseReleased
+
+    private void bloco13OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco13OperMouseDragged
+        moveBloco(evt, blocoP13);
+    }//GEN-LAST:event_bloco13OperMouseDragged
+
+    private void bloco10VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco10VarUMouseReleased
+        encaixa(blocoP10);
+    }//GEN-LAST:event_bloco10VarUMouseReleased
+
+    private void bloco10VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco10VarUMouseDragged
+        moveBloco(evt, blocoP10);
+    }//GEN-LAST:event_bloco10VarUMouseDragged
+
+    private void botaoVar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar4MouseClicked
+        jVars.setIdVal(4);
+        frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+        frameVar.getContentPane().add(jVars); // Adiciona o painel da nova janela ao JFrame
+        frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+        frameVar.setVisible(true);
+    }//GEN-LAST:event_botaoVar4MouseClicked
+
+    private void bloco12OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco12OperMouseReleased
+        encaixa(blocoP12);
+    }//GEN-LAST:event_bloco12OperMouseReleased
+
+    private void bloco12OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco12OperMouseDragged
+        moveBloco(evt, blocoP12);
+    }//GEN-LAST:event_bloco12OperMouseDragged
+
+    private void bloco07VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco07VarUMouseReleased
+        encaixa(blocoP7);
+    }//GEN-LAST:event_bloco07VarUMouseReleased
+
+    private void bloco07VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco07VarUMouseDragged
+        moveBloco(evt, blocoP7);
+    }//GEN-LAST:event_bloco07VarUMouseDragged
+
+    private void botaoVar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar1MouseClicked
+        jVars.setIdVal(1);
+        frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+        frameVar.getContentPane().add(jVars); // Adiciona o painel da nova janela ao JFrame
+        frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+        frameVar.setVisible(true);
+    }//GEN-LAST:event_botaoVar1MouseClicked
+
+    private void bloco09VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco09VarUMouseReleased
+        encaixa(blocoP9);
+    }//GEN-LAST:event_bloco09VarUMouseReleased
+
+    private void bloco09VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco09VarUMouseDragged
+        moveBloco(evt, blocoP9);
+    }//GEN-LAST:event_bloco09VarUMouseDragged
+
+    private void botaoVar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar3MouseClicked
+        jVars.setIdVal(3 );
+        frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+        frameVar.getContentPane().add(jVars); // Adiciona o painel da nova janela ao JFrame
+        frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+        frameVar.setVisible(true);
+    }//GEN-LAST:event_botaoVar3MouseClicked
+
+    private void bloco11OperMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco11OperMouseReleased
+        encaixa(blocoP11);
+    }//GEN-LAST:event_bloco11OperMouseReleased
+
+    private void bloco11OperMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco11OperMouseDragged
+        moveBloco(evt, blocoP11);
+    }//GEN-LAST:event_bloco11OperMouseDragged
+
+    private void bloco05VarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco05VarMouseReleased
+        encaixa(blocoP5);
+    }//GEN-LAST:event_bloco05VarMouseReleased
+
+    private void bloco05VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco05VarMouseDragged
+        moveBloco(evt, blocoP5);
+    }//GEN-LAST:event_bloco05VarMouseDragged
 
     private void varDecValor2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDecValor2KeyReleased
         nomeList[1][1] = varDecValor2.getText();
         blocoP5.dados = varDecValor2.getText();
     }//GEN-LAST:event_varDecValor2KeyReleased
 
-    private void varDecValor3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDecValor3KeyReleased
-        nomeList[2][1] = varDecValor3.getText();
-        blocoP6.dados = varDecValor3.getText();
-    }//GEN-LAST:event_varDecValor3KeyReleased
+    private void varDec1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDec1KeyReleased
+        addVariavel(varDec1.getText(), 1);
+        blocoP5.nome = varDec1.getText();
+        repositionPanels(panelPrincipal);
+    }//GEN-LAST:event_varDec1KeyReleased
+
+    private void varDec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varDec1ActionPerformed
+        addVariavel(evt.getActionCommand(), 1);
+        blocoP5.nome = evt.getActionCommand();
+        repositionPanels(panelPrincipal);
+    }//GEN-LAST:event_varDec1ActionPerformed
+
+    private void varDec1AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_varDec1AncestorMoved
+        if (!movendo) {
+            repositionPanels(panelPrincipal);
+        }
+    }//GEN-LAST:event_varDec1AncestorMoved
+
+    private void bloco08VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco08VarUMouseReleased
+        encaixa(blocoP8);
+    }//GEN-LAST:event_bloco08VarUMouseReleased
+
+    private void bloco08VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco08VarUMouseDragged
+        moveBloco(evt, blocoP8);
+    }//GEN-LAST:event_bloco08VarUMouseDragged
+
+    private void botaoVar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar2MouseClicked
+        jVars.setIdVal(2);
+        frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+        frameVar.getContentPane().add(jVars); // Adiciona o painel da nova janela ao JFrame
+        frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+        frameVar.setVisible(true);
+    }//GEN-LAST:event_botaoVar2MouseClicked
+
+    private void bloco04VarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco04VarMouseReleased
+        encaixa(blocoP4);
+    }//GEN-LAST:event_bloco04VarMouseReleased
+
+    private void bloco04VarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco04VarMouseDragged
+        moveBloco(evt, blocoP4);
+    }//GEN-LAST:event_bloco04VarMouseDragged
+
+    private void varDecValor1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDecValor1KeyReleased
+        nomeList[0][1] = varDecValor1.getText();
+        blocoP4.dados = varDecValor1.getText();
+    }//GEN-LAST:event_varDecValor1KeyReleased
 
     private void varDecKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDecKeyReleased
         System.out.println(varDec.getText());
@@ -2029,143 +2208,160 @@ public class MainInterativo extends javax.swing.JFrame {
         repositionPanels(panelPrincipal);
     }//GEN-LAST:event_varDecKeyReleased
 
-    private void varDec1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDec1KeyReleased
-        addVariavel(varDec1.getText(), 1);
-        blocoP5.nome = varDec1.getText();
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Var Decs e Metodos Mouses"> 
+    private void varDecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varDecActionPerformed
+        addVariavel(evt.getActionCommand(), 0);
+        blocoP4.nome = evt.getActionCommand();
         repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_varDec1KeyReleased
+    }//GEN-LAST:event_varDecActionPerformed
 
-    private void varDec2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_varDec2KeyReleased
-        addVariavel(varDec2.getText(), 2);
-        blocoP6.nome = varDec2.getText();
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_varDec2KeyReleased
+    private void varDecAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_varDecAncestorMoved
+        if (!movendo) {
+            repositionPanels(panelPrincipal);
+        }
+    }//GEN-LAST:event_varDecAncestorMoved
+
+    private void bloco03MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco03MouseReleased
+        encaixa(blocoP3);
+    }//GEN-LAST:event_bloco03MouseReleased
+
+    private void bloco03MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco03MouseDragged
+
+        moveBloco(evt, blocoP3);
+    }//GEN-LAST:event_bloco03MouseDragged
+
+    private void bloco02MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco02MouseReleased
+        encaixa(blocoP2);
+    }//GEN-LAST:event_bloco02MouseReleased
+
+    private void bloco02MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco02MouseDragged
+        moveBloco(evt, blocoP2);
+    }//GEN-LAST:event_bloco02MouseDragged
 
     private void printKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_printKeyReleased
         blocoP2.dados = print.getText();
     }//GEN-LAST:event_printKeyReleased
 
-    private void bloco18MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco18MouseDragged
-        moveBloco(evt, blocoP18);
-    }//GEN-LAST:event_bloco18MouseDragged
+    private void bloco01MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco01MouseReleased
+        encaixa(blocoP1);
+    }//GEN-LAST:event_bloco01MouseReleased
 
-    private void bloco18MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco18MouseReleased
-        encaixa(blocoP18);
-    }//GEN-LAST:event_bloco18MouseReleased
+    // <editor-fold defaultstate="collapsed" desc="Metodos Mouses 01 - 05 e 11"> 
+    private void bloco01MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco01MouseDragged
+        moveBloco(evt, blocoP1);
+    }//GEN-LAST:event_bloco01MouseDragged
 
-    private void bloco19MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco19MouseDragged
-       moveBloco(evt, blocoP19);
-    }//GEN-LAST:event_bloco19MouseDragged
+// </editor-fold>
+    private void botaoVar0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar0MouseClicked
+        jVars.setIdVal(0);
+        frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+        frameVar.getContentPane().add(jVars); // Adiciona o painel da nova janela ao JFrame
+        frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+        frameVar.setVisible(true);
+    }//GEN-LAST:event_botaoVar0MouseClicked
 
-    private void bloco19MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco19MouseReleased
-        encaixa(blocoP19);
-    }//GEN-LAST:event_bloco19MouseReleased
+    private void botaoVar5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar5MouseClicked
+        jVars.setIdVal(5);
+        frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+        frameVar.getContentPane().add(jVars); // Adiciona o painel da nova janela ao JFrame
+        frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+        frameVar.setVisible(true);
+    }//GEN-LAST:event_botaoVar5MouseClicked
 
-    private void ifEntradaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ifEntradaKeyReleased
-        blocoP16.dados = ifEntrada.getText();
-    }//GEN-LAST:event_ifEntradaKeyReleased
+    private void bloco20VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco20VarUMouseDragged
+        moveBloco(evt, blocoP20);
+    }//GEN-LAST:event_bloco20VarUMouseDragged
 
-    private void ifEntrada1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ifEntrada1KeyReleased
-        blocoP17.dados = ifEntrada1.getText();
-    }//GEN-LAST:event_ifEntrada1KeyReleased
+    private void bloco20VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco20VarUMouseReleased
+        encaixa(blocoP20);
+    }//GEN-LAST:event_bloco20VarUMouseReleased
 
-    private void variaveis0PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_variaveis0PropertyChange
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0PropertyChange
+    private void botaoVar6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar6MouseClicked
+        jVars.setIdVal(6);
+        frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+        frameVar.getContentPane().add(jVars); // Adiciona o painel da nova janela ao JFrame
+        frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+        frameVar.setVisible(true);
+    }//GEN-LAST:event_botaoVar6MouseClicked
 
-    private void variaveis0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_variaveis0ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_variaveis0ActionPerformed
+    private void bloco21VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco21VarUMouseDragged
+        moveBloco(evt, blocoP21);
+    }//GEN-LAST:event_bloco21VarUMouseDragged
 
-    private void variaveis0MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis0MouseReleased
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0MouseReleased
+    private void bloco21VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco21VarUMouseReleased
+        encaixa(blocoP21);
+    }//GEN-LAST:event_bloco21VarUMouseReleased
 
-    private void variaveis0MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis0MousePressed
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0MousePressed
+    private void botaoVar7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar7MouseClicked
+        jVars.setIdVal(7);
+        frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
+        frameVar.getContentPane().add(jVars); // Adiciona o painel da nova janela ao JFrame
+        frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
+        frameVar.setVisible(true);
+    }//GEN-LAST:event_botaoVar7MouseClicked
 
-    private void variaveis0MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis0MouseExited
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0MouseExited
+    private void bloco22VarUMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco22VarUMouseDragged
+        moveBloco(evt, blocoP22);
+    }//GEN-LAST:event_bloco22VarUMouseDragged
 
-    private void variaveis0MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis0MouseEntered
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0MouseEntered
+    private void bloco22VarUMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco22VarUMouseReleased
+        encaixa(blocoP22);
+    }//GEN-LAST:event_bloco22VarUMouseReleased
 
-    private void variaveis0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis0MouseClicked
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0MouseClicked
+    private void bloco23MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco23MouseDragged
+        moveBloco(evt, blocoP23);
+    }//GEN-LAST:event_bloco23MouseDragged
 
-    private void variaveis0PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis0PopupMenuWillBecomeVisible
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0PopupMenuWillBecomeVisible
+    private void bloco23MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco23MouseReleased
+        encaixa(blocoP23);
+    }//GEN-LAST:event_bloco23MouseReleased
 
-    private void variaveis0PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis0PopupMenuWillBecomeInvisible
-        repositionPanels(panelPrincipal);
-        if (variaveis0.getSelectedItem() != null) {
-            blocoP1.dados = variaveis0.getSelectedItem().toString();
-        }
-    }//GEN-LAST:event_variaveis0PopupMenuWillBecomeInvisible
+    private void bloco24MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco24MouseDragged
+        moveBloco(evt, blocoP24);
+    }//GEN-LAST:event_bloco24MouseDragged
 
-    private void variaveis0PopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_variaveis0PopupMenuCanceled
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0PopupMenuCanceled
+    private void bloco24MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco24MouseReleased
+        encaixa(blocoP24);
+    }//GEN-LAST:event_bloco24MouseReleased
 
-    private void variaveis0FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis0FocusLost
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0FocusLost
+    private void bloco26MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco26MouseDragged
+        moveBloco(evt, blocoP26);
+    }//GEN-LAST:event_bloco26MouseDragged
 
-    private void variaveis0FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_variaveis0FocusGained
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0FocusGained
+    private void bloco26MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco26MouseReleased
+        encaixa(blocoP26);
+    }//GEN-LAST:event_bloco26MouseReleased
 
-    private void variaveis0MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis0MouseMoved
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0MouseMoved
+    private void bloco25MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco25MouseDragged
+        moveBloco(evt, blocoP25);
+    }//GEN-LAST:event_bloco25MouseDragged
 
-    private void variaveis0MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_variaveis0MouseDragged
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0MouseDragged
+    private void bloco25MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco25MouseReleased
+        encaixa(blocoP25);
+    }//GEN-LAST:event_bloco25MouseReleased
 
-    private void variaveis0ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_variaveis0ItemStateChanged
-        repositionPanels(panelPrincipal);
-    }//GEN-LAST:event_variaveis0ItemStateChanged
-    // </editor-fold>
-    /*
-    !!!!!!!!!!!!!!!!!!!!!!!
-    TROCAR OS COMBOBOX POR UM BOTAO QUE MOSTRA UMA TELA PRA TROCAR A VARIAVEL
-    !!!!!!!!!!!!!!!!!!!!!
-    Fazer o mesmo do de cima nos outros, ve se fica bom
+    private void bloco27MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco27MouseDragged
+        moveBloco(evt, blocoP27);
+    }//GEN-LAST:event_bloco27MouseDragged
+
+    private void bloco27MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco27MouseReleased
+        encaixa(blocoP27);
+    }//GEN-LAST:event_bloco27MouseReleased
     
-    No codigo, ver se ta tudo certinho, Tira o negocio de colocar o valor quanto tem o pritVar
-    E cria outro para fazer o codigo para executar.
-    
-    
-     */
     private void addVariavel(String item, int i) {
         //Fazer uma matriz para adicionar os valores, aí passa tudo pra classe do codigo
         nomeList[i][0] = item;
-        variaveis0.removeAllItems();
-        variaveis1.removeAllItems();
-        variaveis2.removeAllItems();
-        variaveis3.removeAllItems();
-        variaveis4.removeAllItems();
-
-        for (int x = 0; x < 3; x++) {
-            if (nomeList[x][0] != "" && nomeList[x][0] != null) {
-                String string = nomeList[x][0];
-                variaveis0.addItem(string);
-                variaveis1.addItem(string);
-                variaveis2.addItem(string);
-                variaveis3.addItem(string);
-                variaveis4.addItem(string);
-            }
-        }
+        jVars.setVars(nomeList);
         repositionPanels(panelPrincipal);
     }
 
     private Codigo jCodigo = new Codigo();
+    private EscolhaVariaveis jVars = new EscolhaVariaveis();
+    private ResultadoExec jResult = new ResultadoExec();
+    private JFrame frameVar = new JFrame("Escolha de Variável");
+    private JFrame frameResult = new JFrame("Resultado");
+        
 
     /**
      * @param args the command line arguments
@@ -2264,6 +2460,36 @@ public class MainInterativo extends javax.swing.JFrame {
         if (!blocoP17.getRet().getLocation().equals(pt)) {
             bloco17Else.setLocation(blocoP17.getRet().getLocation());
         }
+        if (!blocoP18.getRet().getLocation().equals(pt)) {
+            bloco18.setLocation(blocoP18.getRet().getLocation());
+        }
+        if (!blocoP19.getRet().getLocation().equals(pt)) {
+            bloco19.setLocation(blocoP19.getRet().getLocation());
+        }
+        if (!blocoP20.getRet().getLocation().equals(pt)) {
+            bloco20VarU.setLocation(blocoP20.getRet().getLocation());
+        }
+        if (!blocoP21.getRet().getLocation().equals(pt)) {
+            bloco21VarU.setLocation(blocoP21.getRet().getLocation());
+        }
+        if (!blocoP22.getRet().getLocation().equals(pt)) {
+            bloco22VarU.setLocation(blocoP22.getRet().getLocation());
+        }
+        if (!blocoP23.getRet().getLocation().equals(pt)) {
+            bloco23.setLocation(blocoP23.getRet().getLocation());
+        }
+        if (!blocoP24.getRet().getLocation().equals(pt)) {
+            bloco24.setLocation(blocoP24.getRet().getLocation());
+        }
+        if (!blocoP25.getRet().getLocation().equals(pt)) {
+            bloco25.setLocation(blocoP25.getRet().getLocation());
+        }
+        if (!blocoP26.getRet().getLocation().equals(pt)) {
+            bloco26.setLocation(blocoP26.getRet().getLocation());
+        }
+        if (!blocoP27.getRet().getLocation().equals(pt)) {
+            bloco27.setLocation(blocoP27.getRet().getLocation());
+        }
 
     }
     
@@ -2290,9 +2516,24 @@ public class MainInterativo extends javax.swing.JFrame {
     javax.swing.JPanel bloco17Else;
     javax.swing.JPanel bloco18;
     javax.swing.JPanel bloco19;
+    javax.swing.JPanel bloco20VarU;
+    javax.swing.JPanel bloco21VarU;
+    javax.swing.JPanel bloco22VarU;
+    javax.swing.JPanel bloco23;
+    javax.swing.JPanel bloco24;
+    javax.swing.JPanel bloco25;
+    javax.swing.JPanel bloco26;
+    javax.swing.JPanel bloco27;
+    javax.swing.JButton botaoVar0;
+    javax.swing.JButton botaoVar1;
+    javax.swing.JButton botaoVar2;
+    javax.swing.JButton botaoVar3;
+    javax.swing.JButton botaoVar4;
+    javax.swing.JButton botaoVar5;
+    javax.swing.JButton botaoVar6;
+    javax.swing.JButton botaoVar7;
     javax.swing.JTextField ifEntrada;
     javax.swing.JTextField ifEntrada1;
-    javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
     javax.swing.JLabel jLabel11;
     javax.swing.JLabel jLabel12;
@@ -2300,7 +2541,12 @@ public class MainInterativo extends javax.swing.JFrame {
     javax.swing.JLabel jLabel14;
     javax.swing.JLabel jLabel15;
     javax.swing.JLabel jLabel16;
+    javax.swing.JLabel jLabel17;
+    javax.swing.JLabel jLabel18;
     javax.swing.JLabel jLabel2;
+    javax.swing.JLabel jLabel20;
+    javax.swing.JLabel jLabel21;
+    javax.swing.JLabel jLabel22;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
     javax.swing.JLabel jLabel5;
@@ -2321,12 +2567,9 @@ public class MainInterativo extends javax.swing.JFrame {
     javax.swing.JTextField varDecValor1;
     javax.swing.JTextField varDecValor2;
     javax.swing.JTextField varDecValor3;
-    javax.swing.JComboBox<String> variaveis0;
-    javax.swing.JComboBox<String> variaveis1;
-    javax.swing.JComboBox<String> variaveis2;
-    javax.swing.JComboBox<String> variaveis3;
-    javax.swing.JComboBox<String> variaveis4;
     javax.swing.JMenu visuCodigo;
     // End of variables declaration//GEN-END:variables
+
+    
 // </editor-fold>
 }

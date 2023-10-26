@@ -386,9 +386,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(1).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " );");
+                            codigo.append("" + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -410,13 +410,13 @@ public class Codigo extends javax.swing.JPanel {
                     codigo.append("ERRO DE DECLARAÇÃO");
                 }else{
                     if (isInteger(valor)) {
-                        codigo.append(" public int " + blocos.get(4).nome
+                        codigo.append("int " + blocos.get(4).nome
                             + " = " + blocos.get(4).dados + " ;");
                     } else if (isDouble(valor)) {
-                        codigo.append(" public double " + blocos.get(4).nome
+                        codigo.append("double " + blocos.get(4).nome
                             + " = " + blocos.get(4).dados + " ;");
                     } else {
-                        codigo.append(" public String " + blocos.get(4).nome
+                        codigo.append("String " + blocos.get(4).nome
                             + " = \"" + blocos.get(4).dados + "\" ;");
                     } 
                 }
@@ -429,13 +429,13 @@ public class Codigo extends javax.swing.JPanel {
                     codigo.append("ERRO DE DECLARAÇÃO");
                 }else{
                     if (isInteger(valor)) {
-                        codigo.append(" public int " + blocos.get(5).nome
+                        codigo.append("int " + blocos.get(5).nome
                             + " = " + blocos.get(5).dados + " ;");
                     } else if (isDouble(valor)) {
-                        codigo.append(" public double " + blocos.get(5).nome
+                        codigo.append("double " + blocos.get(5).nome
                             + " = " + blocos.get(5).dados + " ;");
                     } else {
-                        codigo.append(" public String " + blocos.get(5).nome
+                        codigo.append("String " + blocos.get(5).nome
                             + " = \"" + blocos.get(5).dados + "\" ;");
                     } 
                 }
@@ -448,13 +448,13 @@ public class Codigo extends javax.swing.JPanel {
                     codigo.append("ERRO DE DECLARAÇÃO");
                 }else{
                     if (isInteger(valor)) {
-                        codigo.append(" public int " + blocos.get(6).nome
+                        codigo.append("int " + blocos.get(6).nome
                             + " = " + blocos.get(6).dados + " ;");
                     } else if (isDouble(valor)) {
-                        codigo.append(" public double " + blocos.get(6).nome
+                        codigo.append("double " + blocos.get(6).nome
                             + " = " + blocos.get(6).dados + " ;");
                     } else {
-                        codigo.append(" public String " + blocos.get(6).nome
+                        codigo.append("String " + blocos.get(6).nome
                             + " = \"" + blocos.get(6).dados + "\" ;");
                     } 
                 }
@@ -463,9 +463,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(7).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " );");
+                            codigo.append("" + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
 
                     }
@@ -475,9 +475,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(8).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " );");
+                            codigo.append("" + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -486,9 +486,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(9).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " );");
+                            codigo.append("" + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -497,9 +497,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(10).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " );");
+                            codigo.append("" + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -520,10 +520,10 @@ public class Codigo extends javax.swing.JPanel {
                 codigo.append(" / ");
                 break;
             case 16:
-                codigo.append(" if( " + blocos.get(16).dados + " ){");
+                codigo.append("if( " + blocos.get(16).dados + " ){");
                 break;
             case 17:
-                codigo.append(" else( " + blocos.get(17).dados + " ){");
+                codigo.append("else( " + blocos.get(17).dados + " ){");
                 break;
             case 18:
                 codigo.append(" } ");
@@ -535,9 +535,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(20).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " );");
+                            codigo.append("" + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -546,9 +546,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(21).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " );");
+                            codigo.append("" + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -557,9 +557,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(22).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " );");
+                            codigo.append("" + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -596,9 +596,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(1).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" \\n\"," + varss[x][0] + " );");
+                            codigo.append("\\n\"," + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -620,13 +620,13 @@ public class Codigo extends javax.swing.JPanel {
                     codigo.append("ERRO DE DECLARAÇÃO");
                 }else{
                     if (isInteger(valor)) {
-                        codigo.append(" int " + blocos.get(4).nome
+                        codigo.append("int " + blocos.get(4).nome
                             + " = " + blocos.get(4).dados + " ;");
                     } else if (isDouble(valor)) {
-                        codigo.append(" double " + blocos.get(4).nome
+                        codigo.append("double " + blocos.get(4).nome
                             + " = " + blocos.get(4).dados + " ;");
                     } else {
-                        codigo.append(" char " + blocos.get(4).nome
+                        codigo.append("char " + blocos.get(4).nome
                             + "["+(blocos.get(4).nome.length()+1)+"]"+
                                     " = \"" + blocos.get(4).dados + "\" ;");
                     } 
@@ -640,13 +640,13 @@ public class Codigo extends javax.swing.JPanel {
                     codigo.append("ERRO DE DECLARAÇÃO");
                 }else{
                     if (isInteger(valor)) {
-                        codigo.append(" int " + blocos.get(5).nome
+                        codigo.append("int " + blocos.get(5).nome
                             + " = " + blocos.get(5).dados + " ;");
                     } else if (isDouble(valor)) {
-                        codigo.append(" double " + blocos.get(5).nome
+                        codigo.append("double " + blocos.get(5).nome
                             + " = " + blocos.get(5).dados + " ;");
                     } else {
-                        codigo.append(" char " + blocos.get(5).nome
+                        codigo.append("char " + blocos.get(5).nome
                             + "["+(blocos.get(5).nome.length()+1)+"]"+
                                     " = \"" + blocos.get(5).dados + "\" ;");
                     } 
@@ -660,13 +660,13 @@ public class Codigo extends javax.swing.JPanel {
                     codigo.append("ERRO DE DECLARAÇÃO");
                 }else{
                     if (isInteger(valor)) {
-                        codigo.append(" int " + blocos.get(6).nome
+                        codigo.append("int " + blocos.get(6).nome
                             + " = " + blocos.get(6).dados + " ;");
                     } else if (isDouble(valor)) {
-                        codigo.append(" double " + blocos.get(6).nome
+                        codigo.append("double " + blocos.get(6).nome
                             + " = " + blocos.get(6).dados + " ;");
                     } else {
-                        codigo.append(" char " + blocos.get(6).nome
+                        codigo.append("char " + blocos.get(6).nome
                             + "["+(blocos.get(6).nome.length()+1)+"]"+
                                     " = \"" + blocos.get(6).dados + "\" ;");
                     } 
@@ -676,9 +676,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(7).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" \\n\"," + varss[x][0] + " );");
+                            codigo.append("\\n\"," + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
 
                     }
@@ -687,10 +687,10 @@ public class Codigo extends javax.swing.JPanel {
             case 8:
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(8).dados.equals(varss[x][0])) {
-                        if (varVal) {
-                            codigo.append(" \\n\"," + varss[x][0] + " );");
+                       if (varVal) {
+                            codigo.append("\\n\"," + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -699,9 +699,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(9).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" \\n\"," + varss[x][0] + " );");
+                            codigo.append("\\n\"," + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -710,9 +710,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(10).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" \\n\"," + varss[x][0] + " );");
+                            codigo.append("\\n\"," + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -733,10 +733,10 @@ public class Codigo extends javax.swing.JPanel {
                 codigo.append(" / ");
                 break;
             case 16:
-                codigo.append(" if( " + blocos.get(16).dados + " ){");
+                codigo.append("if( " + blocos.get(16).dados + " ){");
                 break;
             case 17:
-                codigo.append(" else( " + blocos.get(17).dados + " ){");
+                codigo.append("else( " + blocos.get(17).dados + " ){");
                 break;
             case 18:
                 codigo.append(" } ");
@@ -748,9 +748,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(20).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" \\n\"," + varss[x][0] + " );");
+                            codigo.append("\\n\"," + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -759,9 +759,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(21).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" \\n\"," + varss[x][0] + " );");
+                            codigo.append("\\n\"," + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -770,9 +770,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(22).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" \\n\"," + varss[x][0] + " );");
+                            codigo.append("\\n\"," + varss[x][0] + ");");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -809,9 +809,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(1).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " )");
+                            codigo.append("" + varss[x][0] + ")");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -886,9 +886,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(7).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " )");
+                            codigo.append("" + varss[x][0] + ")");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -897,9 +897,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(8).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " )");
+                            codigo.append("" + varss[x][0] + ")");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -908,9 +908,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(9).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " )");
+                            codigo.append("" + varss[x][0] + ")");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -919,9 +919,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(10).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " )");
+                            codigo.append("" + varss[x][0] + ")");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -942,10 +942,10 @@ public class Codigo extends javax.swing.JPanel {
                 codigo.append(" / ");
                 break;
             case 16:
-                codigo.append(" if " + blocos.get(16).dados + " :");
+                codigo.append("if " + blocos.get(16).dados + " :");
                 break;
             case 17:
-                codigo.append(" else " + blocos.get(17).dados + " :");
+                codigo.append("else " + blocos.get(17).dados + " :");
                 break;
             case 18:
                 codigo.append("");
@@ -957,9 +957,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(20).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " )");
+                            codigo.append("" + varss[x][0] + ")");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -968,9 +968,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(21).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " )");
+                            codigo.append("" + varss[x][0] + ")");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }
@@ -979,9 +979,9 @@ public class Codigo extends javax.swing.JPanel {
                 for (int x = 0; x < 3; x++) {
                     if (blocos.get(22).dados.equals(varss[x][0])) {
                         if (varVal) {
-                            codigo.append(" " + varss[x][0] + " )");
+                            codigo.append("" + varss[x][0] + ")");
                         } else {
-                            codigo.append(" " + varss[x][0] + " ");
+                            codigo.append("" + varss[x][0] + "");
                         }
                     }
                 }

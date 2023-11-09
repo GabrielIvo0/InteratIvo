@@ -13,7 +13,6 @@ public class Bloco {
     public Rectangle ret = new Rectangle();
     public Rectangle retEncaixe = new Rectangle();
     public Rectangle retEncaixeLateral = new Rectangle();
-    public String codigo = "";
     public String nome = "";
     public String dados = "";
     public int encaixado = 0;
@@ -28,14 +27,6 @@ public class Bloco {
 
     public void setRetEncaixeLateral(Rectangle retEncaixeLateral) {
         this.retEncaixeLateral = retEncaixeLateral;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
     
     public int getId() {

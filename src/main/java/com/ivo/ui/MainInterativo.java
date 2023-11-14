@@ -21,11 +21,10 @@ import javax.swing.JFrame;
  * @author Gabriel Ivo
  */
 public class MainInterativo extends javax.swing.JFrame {
-    
+
     /*
     FAZER UM CONCERTO NO ENCAIXAR, PRA ANALISAR TODOS OS INTERCEPTS ANTES PRA N BLOQUEAR SENDO QUE T
-    */
-
+     */
     public MainInterativo() {
         blocoP0.id = 0;
         blocoP1.id = 1;
@@ -56,7 +55,7 @@ public class MainInterativo extends javax.swing.JFrame {
         blocoP26.id = 26;
         blocoP27.id = 27;
         initComponents();
-        
+
         blocoP0.ret = bloco00.getBounds();
         blocoP0.retEncaixe = bloco00.getBounds();
         blocoP0.ret.x = blocoP0.ret.x + 7;
@@ -1600,9 +1599,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    
+
     String[][] nomeList = new String[3][2];
     boolean movendo = false;
     Bloco blocoP0 = new Bloco();
@@ -1791,7 +1788,8 @@ public class MainInterativo extends javax.swing.JFrame {
         //Verifica qual bloco vai ser feito o encaixe e chama a função para encaixar.
         boolean achou = false;
         for (Bloco blAlvo : blocos) {
-            if ((bl.ret.intersects(blAlvo.retEncaixe) || bl.ret.intersects(blAlvo.retEncaixeLateral))
+            if ((bl.ret.intersects(blAlvo.retEncaixe)
+                    || bl.ret.intersects(blAlvo.retEncaixeLateral))
                     && bl.id != blAlvo.id && achou == false) {
                 if (bl.ret.intersects(blAlvo.retEncaixeLateral)) {
                     if (!estaEncaixadoLateral(blAlvo)) {
@@ -1804,8 +1802,6 @@ public class MainInterativo extends javax.swing.JFrame {
                         encaixarBloco(blAlvo, bl, false);
                     }
                 }
-                
-                System.out.println(bl.id + " ENCAIXOU com " + blAlvo.id);
             }
         }
         movendo = false;
@@ -1833,8 +1829,8 @@ public class MainInterativo extends javax.swing.JFrame {
                 blocos.set(blAlvo.id, blAlvo);
             }
         }
-        int meioBlocox = bl.ret.width - (bl.ret.width/2); 
-        int meioBlocoy = bl.ret.height - (bl.ret.height/2); 
+        int meioBlocox = bl.ret.width - (bl.ret.width / 2);
+        int meioBlocoy = bl.ret.height - (bl.ret.height / 2);
         int x = evt.getLocationOnScreen().x - meioBlocox - panelPrincipal.getLocationOnScreen().x;
         int y = evt.getLocationOnScreen().y - meioBlocoy - panelPrincipal.getLocationOnScreen().y;
 
@@ -1842,8 +1838,9 @@ public class MainInterativo extends javax.swing.JFrame {
         blocos.set(bl.id, bl);
 
     }    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="Metodos Mouses 13-"> 
     
+    // <editor-fold defaultstate="collapsed" desc="Metodos Mouses 13-"> 
+
     private void visuCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visuCodigoMouseClicked
         System.out.println("Visualizando o Código");
         jCodigo.setBlocosJava(blocos, nomeList);//Chama o metodo para criar o código
@@ -1862,7 +1859,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Metodos variaveis concerta Panels"> 
-        // </editor-fold>
+    // </editor-fold>
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
 
         System.out.println("Executando Código");
@@ -1884,36 +1881,30 @@ public class MainInterativo extends javax.swing.JFrame {
                 System.err.println("Mensagem: " + e.getLocalizedMessage() + "Fim");
                 //Fazer uma janela de erro para avisar que o código está errado.
             }
-            
-            
+
             // Restaurar a saída do console
             System.setOut(old);
 
             // Capturar a saída
             String resultadoConsole = baos.toString();
-            
-            if(erro != ""){
-                jCodigo.setErroCodigo(erro,blocos,nomeList);
+
+            if (erro != "") {
+                jCodigo.setErroCodigo(erro, blocos, nomeList);
                 JFrame frameVar = new JFrame("Visualização do Código com Erro");
                 frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
                 frameVar.getContentPane().add(jCodigo); // Adiciona o painel da nova janela ao JFrame
                 frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
                 frameVar.setVisible(true);
-            }else{
+            } else {
                 jResult.setResult(resultadoConsole);
                 frameResult.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
                 frameResult.getContentPane().add(jResult); // Adiciona o painel da nova janela ao JFrame
                 frameResult.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
                 frameResult.setVisible(true);
             }
-            
-            
-            
-            
+
             System.out.println("Saída do console: " + resultadoConsole);
-            
-            
-            
+
         } catch (Exception e) {
             System.out.println("Erro");
             e.printStackTrace();
@@ -1929,9 +1920,9 @@ public class MainInterativo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenu1MouseClicked
     // <editor-fold defaultstate="collapsed" desc="Metodos variaveis concerta Panels 2/VarDecsValor e ReleseKey"> 
-    
+
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        
+
         String text = jVars.valEscolhido;
         int idBotao = jVars.idValor;
         switch (idBotao) {
@@ -1970,7 +1961,7 @@ public class MainInterativo extends javax.swing.JFrame {
             default:
                 System.out.println("Erro add Botao");
         }
-        
+
         repositionPanels(panelPrincipal);
     }//GEN-LAST:event_formWindowGainedFocus
 
@@ -2126,7 +2117,7 @@ public class MainInterativo extends javax.swing.JFrame {
     }//GEN-LAST:event_bloco09VarUMouseDragged
 
     private void botaoVar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar3MouseClicked
-        jVars.setIdVal(3 );
+        jVars.setIdVal(3);
         frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela
         frameVar.getContentPane().add(jVars); // Adiciona o painel da nova janela ao JFrame
         frameVar.pack(); // Ajusta o tamanho do JFrame de acordo com o conteúdo
@@ -2348,7 +2339,7 @@ public class MainInterativo extends javax.swing.JFrame {
     private void bloco27MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco27MouseReleased
         encaixa(blocoP27);
     }//GEN-LAST:event_bloco27MouseReleased
-    
+
     private void addVariavel(String item, int i) {
         //Fazer uma matriz para adicionar os valores, aí passa tudo pra classe do codigo
         nomeList[i][0] = item;
@@ -2361,7 +2352,6 @@ public class MainInterativo extends javax.swing.JFrame {
     private ResultadoExec jResult = new ResultadoExec();
     private JFrame frameVar = new JFrame("Escolha de Variável");
     private JFrame frameResult = new JFrame("Resultado");
-        
 
     /**
      * @param args the command line arguments
@@ -2492,9 +2482,9 @@ public class MainInterativo extends javax.swing.JFrame {
         }
 
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Declaração de Variáveis"> 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JPanel bloco00;
     javax.swing.JPanel bloco01;
@@ -2570,6 +2560,5 @@ public class MainInterativo extends javax.swing.JFrame {
     javax.swing.JMenu visuCodigo;
     // End of variables declaration//GEN-END:variables
 
-    
 // </editor-fold>
 }

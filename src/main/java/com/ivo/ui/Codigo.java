@@ -523,7 +523,11 @@ public class Codigo extends javax.swing.JPanel {
                 codigo.append("if( " + blocos.get(16).dados + " ){");
                 break;
             case 17:
-                codigo.append("else( " + blocos.get(17).dados + " ){");
+                if(blocos.get(17).dados != ""){
+                    codigo.append("else if( " + blocos.get(17).dados + " ){");
+                }else{
+                    codigo.append("else{");
+                }
                 break;
             case 18:
                 codigo.append(" } ");
@@ -571,10 +575,10 @@ public class Codigo extends javax.swing.JPanel {
                 codigo.append(" + ");
                 break;
             case 25:
-                codigo.append(" * ");
+                codigo.append(" - ");
                 break;
             case 26:
-                codigo.append(" - ");
+                codigo.append(" * ");
                 break;
             case 27:
                 codigo.append(" / ");
@@ -736,7 +740,11 @@ public class Codigo extends javax.swing.JPanel {
                 codigo.append("if( " + blocos.get(16).dados + " ){");
                 break;
             case 17:
-                codigo.append("else( " + blocos.get(17).dados + " ){");
+                if(blocos.get(17).dados != ""){
+                    codigo.append("else if( " + blocos.get(17).dados + " ){");
+                }else{
+                    codigo.append("else{");
+                }
                 break;
             case 18:
                 codigo.append(" } ");
@@ -784,10 +792,10 @@ public class Codigo extends javax.swing.JPanel {
                 codigo.append(" + ");
                 break;
             case 25:
-                codigo.append(" * ");
+                codigo.append(" - ");
                 break;
             case 26:
-                codigo.append(" - ");
+                codigo.append(" * ");
                 break;
             case 27:
                 codigo.append(" / ");
@@ -942,10 +950,14 @@ public class Codigo extends javax.swing.JPanel {
                 codigo.append(" / ");
                 break;
             case 16:
-                codigo.append("if " + blocos.get(16).dados + " :");
+                codigo.append("if( " + blocos.get(16).dados + " ):");
                 break;
             case 17:
-                codigo.append("else " + blocos.get(17).dados + " :");
+                if(blocos.get(17).dados != ""){
+                    codigo.append("elif( " + blocos.get(17).dados + " ):");
+                }else{
+                    codigo.append("else:");
+                }
                 break;
             case 18:
                 codigo.append("");
@@ -993,10 +1005,10 @@ public class Codigo extends javax.swing.JPanel {
                 codigo.append(" + ");
                 break;
             case 25:
-                codigo.append(" * ");
+                codigo.append(" - ");
                 break;
             case 26:
-                codigo.append(" - ");
+                codigo.append(" * ");
                 break;
             case 27:
                 codigo.append(" / ");

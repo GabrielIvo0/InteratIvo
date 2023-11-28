@@ -2238,12 +2238,10 @@ public class MainInterativo extends javax.swing.JFrame {
         encaixa(blocoP1);
     }//GEN-LAST:event_bloco01MouseReleased
 
-    // <editor-fold defaultstate="collapsed" desc="Metodos Mouses 01 - 05 e 11"> 
     private void bloco01MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bloco01MouseDragged
         moveBloco(evt, blocoP1);
     }//GEN-LAST:event_bloco01MouseDragged
 
-// </editor-fold>
     private void botaoVar0MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVar0MouseClicked
         jVars.setIdVal(0);
         frameVar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Define a ação padrão de fechar a janela

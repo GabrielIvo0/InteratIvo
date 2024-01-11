@@ -2,4 +2,6 @@
 <br/>
 Recursos utilizados: Java, Java Swing, IDE Apache NetBeans.
 <br/>
+Tela inicial do InteratIvo:
 <img src="/img/TelaPrincipalFinal.png">
+

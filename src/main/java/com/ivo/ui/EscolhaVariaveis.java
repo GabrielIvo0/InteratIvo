@@ -1,7 +1,5 @@
 package com.ivo.ui;
 
-import com.ivo.tools.Bloco;
-import java.util.ArrayList;
 
 /**
  *
@@ -130,7 +128,7 @@ public class EscolhaVariaveis extends javax.swing.JPanel {
     }//GEN-LAST:event_formComponentRemoved
 
     private void formAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorRemoved
-        //sSystem.out.println("TESTE!!");
+        
     }//GEN-LAST:event_formAncestorRemoved
 
 

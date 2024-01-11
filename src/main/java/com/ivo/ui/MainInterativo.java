@@ -4,16 +4,10 @@ import bsh.EvalError;
 import com.ivo.tools.Bloco;
 
 import bsh.Interpreter;
-import java.awt.Image;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.io.PrintStream;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -21,10 +15,7 @@ import javax.swing.JFrame;
  * @author Gabriel Ivo
  */
 public class MainInterativo extends javax.swing.JFrame {
-
-    /*
-    FAZER UM CONCERTO NO ENCAIXAR, PRA ANALISAR TODOS OS INTERCEPTS ANTES PRA N BLOQUEAR SENDO QUE T
-     */
+    
     public MainInterativo() {
         blocoP0.id = 0;
         blocoP1.id = 1;
@@ -1839,7 +1830,7 @@ public class MainInterativo extends javax.swing.JFrame {
 
     }    // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Metodos Mouses 13-"> 
+    // <editor-fold defaultstate="collapsed" desc="Metodos Mouses"> 
 
     private void visuCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visuCodigoMouseClicked
         System.out.println("Visualizando o Código");
@@ -1858,8 +1849,6 @@ public class MainInterativo extends javax.swing.JFrame {
         System.out.println("Winmdsow");
     }//GEN-LAST:event_formWindowActivated
 // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="Metodos variaveis concerta Panels"> 
-    // </editor-fold>
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
 
         System.out.println("Executando Código");
@@ -1879,7 +1868,6 @@ public class MainInterativo extends javax.swing.JFrame {
                 erro = e.getLocalizedMessage();
                 System.err.println("Erro ao executar o código");
                 System.err.println("Mensagem: " + e.getLocalizedMessage() + "Fim");
-                //Fazer uma janela de erro para avisar que o código está errado.
             }
 
             // Restaurar a saída do console

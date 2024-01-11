@@ -1,7 +1,5 @@
 package com.ivo.ui;
 
-import com.ivo.tools.Bloco;
-import java.util.ArrayList;
 
 /**
  *
